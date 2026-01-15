@@ -1,0 +1,119 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Fourier</title>
+<link href="250219.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+</head>
+
+	<meta charset="UTF-8">
+
+
+
+
+<title>Laplace</title>
+</head>
+
+<body>
+<p class="Red-Large-Bold">フーリエ級数展開-15</p>
+<p>&nbsp;</p>
+<p><a href="Fourier-08.html">ここ</a>で，三角関数を用いて解いた<span class="Red-Bold">ノコギリ波</span>を複素数表示で解いてみましょう．</p>
+<p>&nbsp;</p>
+<p class="Red-Large-Bold">・ノコギリ波</p>
+<p>ノコギリ波，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   f(x) = \frac{x}{ \pi} \hspace{20pt} ( - \pi \leq x &lt; \pi) \)</span></p>
+<p>の場合を考えます．</p>
+<p>フーリエ級数展開は， </p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle       f(x) =  \sum_{n= - \infty}^{ \infty}  C_{n} \cdot  e^{i \frac{ n \pi}{L}x } \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle C_n = \frac{1}{2L} \int_{ - L}^{ L} f(x) \ \displaystyle  e^{- i \frac{ n \pi}{L}x } \  dx  \)</span></p>
+<p>となり，積分範囲から，<span class="Blue-Bold">L＝ π</span>，となるので，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle       f(x) =  \sum_{n= - \infty}^{ \infty}  C_{n} \cdot  e^{i n  x } \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle C_n = \frac{1}{2 \pi} \int_{ - \pi}^{ \pi} f(x) \ \displaystyle  e^{- i  n  x} \  dx  \)</span></p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p><span class="Red-Bold">n=0</span>，の場合は，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle C_0 = \frac{1}{2  \pi } \int_{ - \pi}^{ \pi} f(x)  \  dx  <br />
+= \frac{1}{2  \pi}  \int_{ - \pi}^{ \pi} \frac{x}{\pi}   \  dx  = \frac{1}{2  \pi^2}  \int_{ - \pi}^{ \pi} x   \  dx \)</span><br />
+</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle 
+= \frac{1}{2  \pi^2 }  \left[ \frac{1}{2} x^2 \right]_{- \pi}^{\pi} <br />
+= 
+\frac{1}{2 \pi^2 }  \left[ \frac{ \pi^2}{2} - \frac{(- \pi)^2}{2} \right] = 0 \)</span></p>
+<p>&nbsp;</p>
+<p><span class="Red-Bold">n≠0</span>，の場合は，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle C_n = \frac{1}{2  \pi } \int_{ - \pi}^{ \pi} f(x)  \cdot  e^{-i n  x }\  dx <br />
+  = \frac{1}{2  \pi}  \int_{ - \pi}^{ \pi} \frac{x}{\pi}  \cdot  e^{-i n  x } \  dx <br>
+= \frac{1}{2  \pi^2} \int_{ - \pi}^{ \pi} x  \  e^{-i n  x } \  dx \)</span></p>
+<p>&nbsp;</p>
+<p>これは，<a href="Integration by parts-01.html">ここ</a>，で説明した，瞬間部分積分，を使えば簡単に解け，</p>
+<p>\( \Large     \displaystyle  \int x \ e^{ -inx} \ dx \)</p>
+<p>を考えていきます．瞬間部分積分を使えば，</p>
+<table width="598" border="1">
+  <tbody>
+    <tr>
+      <td width="40" style="text-align: center">+</td>
+      <td width="40" style="text-align: center">x</td>
+      <td width="539" style="text-align: center">\( \Large     \displaystyle  -\frac{1}{in} e^{-inx}  \)<sup></sup></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">\( \Large     \displaystyle  \left(-\frac{1}{in} \right) \left(-\frac{1}{in} \right) e^{-inx} = - \frac{1}{n^2} e^{-inx} \)<sup></sup><sup></sup></td>
+    </tr>
+  </tbody>
+</table>
+<p>\( \Large     \displaystyle  \int x \ e^{ -inx} \ dx = - \frac{1}{in} x \ e^{-inx} + \frac{1}{n^2} e^{-inx} + C \)</p>
+<p>となります．したがって，</p>
+<p>\( \Large     \displaystyle  C_n = \frac{1}{2 \pi^2} \int_0^{ \pi} x \ e^{ -inx} \ dx =  \frac{1}{2 \pi^2} \left[ -\frac{1}{in} x \ e^{-inx} + \frac{1}{n^2} e^{-inx} \right]_{- \pi}^{\pi} \)</p>
+<p>\( \Large     \displaystyle   =  \frac{1}{2 \pi^2} \left[ \left(  - \frac{ \pi}{in}  \ e^{in \pi} + \frac{1}{n^2} e^{in \pi} \right) - \left(  \frac{ \pi}{in}  \ e^{in \pi} - \frac{1}{n^2} e^{in \pi} \right) \right] \)</p>
+<p>\( \Large     \displaystyle   =  \frac{1}{2 \pi^2} \left[   - \frac{ \pi}{in}\left(  \ e^{-in \pi} + e^{in \pi} \right) - \frac{1}{n^2} \left(   e^{-in \pi} -  e^{in \pi} \right) \right] \)</p>
+<p>\( \Large     \displaystyle   =  \frac{1}{2 \pi^2} \left[   - \frac{ \pi}{in} \ 2 \ cos (n \pi) - \frac{1}{n^2} \ 2i \ sin \ (n \pi) \right] \)</p>
+<p>\( \Large     \displaystyle   =     - \frac{ 1}{in \pi}  \ cos (n \pi)  \)</p>
+<p>\( \Large     \displaystyle   =     - \frac{ 1}{in \pi}  \ ( -1)^n  \)</p>
+<p>\( \Large     \displaystyle   =      \frac{ i}{n \pi}  \ ( -1)^n  \)</p>
+<p>したがって，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle       f(x) =  \sum_{n= - \infty}^{ \infty}  C_{n} \cdot  e^{i n x }　= \sum_{n=1}^{ \infty}  ( C_{-n} \cdot  e^{-i n x }  +   C_{n} \cdot  e^{i n x })\)</span></p>
+<p>となることは前ページに記載しました(C<sub>0</sub>は０です）</p>
+<p>第二項，第三項はそれぞれ，オイラーの公式から，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    C_{n} \cdot  e^{i n x } =  \frac{i}{ n \pi} (-1)^n  \{ cos (nx) + i \ sin (nx) \} \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    C_{-n} \cdot  e^{-i n x } = -\frac{1}{ n \pi  } (-1)^n \{ cos (nx) - i \ sin (nx) \} \)</span></p>
+<p>となるので，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    C_{n} \cdot  e^{i n x } +     C_{-n} \cdot  e^{-i n x } =  \frac{i}{n \pi} (-1)^n  \left[ \{ cos (nx) + i \ sin (nx) \} - \{cos (nx) - i \ sin (nx) \} \right] \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle     =  \frac{i}{ n \pi  }  (-1)^n \left\{   \ 2i \ sin (nx) \right\} \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle     =  -\frac{2}{  \pi  }  (-1)^n    \frac{sin (nx)}{n}  \)</span></p>
+<p>となりますので，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle f(x) = C_0 + \sum_{n=1, odd}^{ \infty}  ( C_{-n} \cdot  e^{-i n x }  +   C_{n} \cdot  e^{i n x }) \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle=  \sum_{n=1}^{ \infty}      \left\{ -\frac{2}{  \pi  }  (-1)^n    \frac{sin (nx)}{n} \right\} \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle= \frac{2}{ \pi} \left( sin  \ \pi x - \frac{1}{2} sin \ 2x +  \frac{1}{3} sin \ 3x + ........... \right) \)</span></p>
+<p><img src="sawtooth-overplot.jpg" width="688" height="401" alt=""/></p>
+<p>と，<a href="Fourier-09.html">ノコギリ関数の場合</a>，と同じ結果となります．</p>
+<p>　</p>
+<p>最後は，<span class="Red-Large">x<sup>2</sup></span>，の波形です．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="Fourier-14.html"><img src="L-arrow.png" alt="l" width="57" height="34" border="0" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="Fourier-16.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

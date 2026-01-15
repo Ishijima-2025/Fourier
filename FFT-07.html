@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>無題ドキュメント</title>
+<style type="text/css">
+<!--
+.style1 {color: #0000FF}
+.style2 {
+	font-size: large;
+	color: #0000FF;
+}
+.style3 {
+	font-size: large;
+	color: #FF0000;
+	font-weight: bold;
+}
+.style4 {color: #FF0000; font-size: large;}
+.style10 {color: #000000; }
+.style6 {font-size: x-large; color: #FF0000; font-weight: bold; }
+-->
+</style>
+</head>
+
+<body>
+<h1 class="style1">加算平均の効果</h1>
+<p>さて，極端な話，フーリエ変換においては，必要なサンプル数は，<br />
+　<span class="style2">目的となる波形を1波形分</span><br />
+のみでいいのです．<br />
+なぜなら，勝手にフーリエ変換が両脇に同じは系をつなげているからです．<br />
+じゃあ，１００Hz，の周波数の情報が欲しい場合，１／１００秒＝10ミリ秒でいいのでしょうか？</p>
+<p>サンプリング周波数は，<span class="style3">ナイキスト周波数</span>という定理があり，<br />
+　<span class="style4">サンプリング周波数の１／２</span><br />
+と言う定義があります．<br />
+ですので，<br />
+　１００Hz×２＝２００Hz<br />
+となります．</p>
+<p>つまり，１００Hzの情報を得るためには，<br />
+　サンプリング周波数：２００Hz<br />
+　サンプル時間：１０ミリ秒<br />
+なのでしょうか？</p>
+<p>理想的にはそうかも知れません．<br />
+しかし，データには必ずノイズが含まれています．<br />
+さらには，フーリエ変換の計算につきものの計算ノイズも．．．</p>
+<p>じゃあ，許す限り長い長いデータをとればいいのでしょうか？<br />
+しかし，先に述べたように，サンプル数，ｎ，は以下の式で影響し，</p>
+<p><img src="FFT-11.gif" width="136" height="198" /></p>
+<p><span class="style3">ｎが多くなると，ｄｆ，が小さくなる</span>，という方向に向かいます．<br />
+つまり，単に周波数分解能が上がるだけ，なのです．</p>
+<p>さらに，ｎが多くなると計算時間も非常に長くなります．<br />
+ｎが2倍になれば，計算時間も2倍，とは行かずに指数関数的に時間がかかってきます．</p>
+<p>従って，あまり長いサンプルをそのままフーリエ変換にかける意味はないのです．</p>
+<p>そこで，登場したのが，<span class="style6">加算平均</span>，です．</p>
+<p>詳しくは次ページへ．</p>
+<p><span class="style10"><a href="FFT-06.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="FFT-08.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+</body>
+</html>

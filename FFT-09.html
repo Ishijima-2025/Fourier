@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>無題ドキュメント</title>
+<style type="text/css">
+<!--
+.style10 {color: #000000; }
+.style11 {color: #0000FF}
+.style12 {font-size: large}
+.style13 {
+	font-size: large;
+	color: #0000FF;
+	font-weight: bold;
+}
+.style14 {
+	font-size: x-large;
+	color: #FF0000;
+	font-weight: bold;
+}
+-->
+</style>
+</head>
+
+<body>
+<h1 class="style11">加算平均の実際</h1>
+<p><img src="FFT-18.jpg" width="674" height="408" /></p>
+<p>このように，波形をウィンドウに分割して，それぞれをフーリエ変換します．<br />
+そして，これらフーリエ変化した波形を加算平均するのです．</p>
+<p>しかし，実際には，もう少し細かく行っています．</p>
+<p><img src="FFT-19.jpg" width="671" height="454" /></p>
+<p>このように，<span class="style12"></span><span class="style11">ウィンドウを半分ずつずらして</span>，それぞれについてフーリエ変換を行い，加算平均を行っています．<br />
+この理由は，前ページにあった，<span class="style13">窓関数</span>に由来するものです．<br />
+窓関数は，端のデータの振幅を小さくしています．<br />
+従って，端の情報は中央の情報に比べて，重みが低くなってしまいます．<br />
+加算平均のウィンドウを半分ずつずらすことにより，できるだけ均等に重み付けしよう，というのが目的です．<br />
+しかし，この手法はあくまで私の経験値であって，理論的に正しいかどうかはわかりません．</p>
+<p>では，実際の加算平均の効果を見てみましょう．<br />
+まずは加算平均していない波形でのフーリエ変換．</p>
+<p><img src="FFT-17.jpg" width="323" height="213" /></p>
+<p>前ページに示したのと一緒です．</p>
+<p>次に，10回加算平均をかけたものです．</p>
+<p><img src="FFT-20.JPG" width="329" height="215" /></p>
+<p>このように，１００，２００Hzのところにきれいなピークが浮かび上がってきました．<br />
+さらに，ベースラインがとてもきれいになり，この値から本来のノイズ成分の大きさを得ることができます．</p>
+<p>簡単なプログラムを用意しましたので，遊んでみてください．<br />
+　<span class="style11">正弦波１，正弦波２，ノイズ</span><br />
+を適当に設定し，<br />
+　<span class="style11">回数</span><br />
+が加算平均の回数です．<br />
+　<span class="style11">フーリエ変換の長さ</span><br />
+は加算平均のウィンドウの大きさです．<br />
+  ダウンロードは下のファイルを．<br />
+    <a href="FFT-average.vi">FFT-average.vi</a><br />
+</p>
+<p>次に，いくつかのフーリエ変換の注意点を．</p>
+<p><span class="style10"><a href="FFT-08.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="FFT-10.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span> </p>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Fourier</title>
+<link href="250219.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+</head>
+
+	
+
+
+
+
+<title>Laplace</title>
+</head>
+
+<body>
+<p class="Red-Large-Bold">フーリエ級数展開-04</p>
+<p class="Red-Large-Bold">&nbsp;</p>
+<p><span class="Blue-Bold">a<sub>n</sub>，b<sub>n</sub></span>，について考えていきます．</p>
+<p>式は，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   f(x) = \color{red}{\frac{a_0}{2}} + \sum_{n=1}^{ \infty} \left( a_n \ cos \frac{2 \pi n x}{T} + b_n \ sin \frac{2 \pi n x}{T}\right) \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   f(x) = \color{red}{a_0} + \sum_{n=1}^{ \infty} \left( a_n \ cos \frac{2 \pi n x}{T} + b_n \ sin \frac{2 \pi n x}{T}\right) \)</span></p>
+<p>どちらでも同じ結果となりますので，上の式を使っていきます．</p>
+<p>&nbsp;</p>
+<p><span class="Red-Large-Bold">・a<sub>n</sub>，の推定</span></p>
+<p>両辺に，<span class="X-Large-Bold-RED">\( \Large     \displaystyle    cos \frac{2 \pi m x}{T}  \)</span>，を掛けて，０からTまで積分すると，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   \int_0^T f(x) \cdot cos \frac{2 \pi m x}{T} \ dx =    \int_0^T \left\{ \frac{a_0}{2} + \sum_{n=1}^{ \infty} \left( a_n \ cos \frac{2 \pi n x}{T} + b_n \ sin \frac{2 \pi n x}{T}\right) \right\} \cdot cos \frac{2 \pi m x}{T} \ dx\)</span></p>
+<p>第一項，第三項は，<a href="Fourier-01.html">三角関数の一周期の積分</a>，<a href="Fourier-02.html">直交性</a>，から<span class="Red-Large-Bold">0</span>となります．</p>
+<p>第二項も，<a href="Fourier-02.html">直交性</a>，から，<span class="Red-Bold">n=m</span>，の時のみ値を持ち，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   \int_0^T f(x) \cdot cos \frac{2 \pi m x}{T} \ dx =    \int_0^T   a_m \ \left( cos \frac{2 \pi m x}{T} \right)^2 \ dx\)</span></p>
+<p>となります．式を変形して，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    =    \int_0^T   a_m \ \left( 1 \color{red}{+} cos \frac{4 \pi m x}{T} \right) \ dx\)</span></p>
+<p>第二項は，<a href="Fourier-01.html">三角関数の一周期の積分</a>，から<span class="Red-Large-Bold">0</span>となりますので，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    =    \int_0^T   \frac{a_m}{2}  \ dx\)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    =    \int_0^T   \frac{a_m}{2}  \ dx\)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    =\frac{a_m}{2}  \ T \)</span></p>
+<p>したがって，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_m = \frac{2}{T} \int_0^T f(x) \cdot cos \frac{2 \pi m x}{T} \ dx \)</span></p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p><span class="Red-Large-Bold">・b<sub>n</sub>，の推定</span></p>
+<p>計算は，ほとんど同じですが，やってみます．</p>
+<p>両辺に，<span class="X-Large-Bold-RED">\( \Large     \displaystyle    sin \frac{2 \pi m x}{T}  \)</span>，を掛けて，０からTまで積分すると，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   \int_0^T f(x) \cdot sin \frac{2 \pi m x}{T} \ dx =    \int_0^T \left\{ \frac{a_0}{2} + \sum_{n=1}^{ \infty} \left( a_n \ cos \frac{2 \pi n x}{T} + b_n \ sin \frac{2 \pi n x}{T}\right) \right\} \cdot sin \frac{2 \pi m x}{T} \ dx\)</span></p>
+<p>第一項，第三項は，<a href="Fourier-01.html">三角関数の一周期の積分</a>，<a href="Fourier-02.html">直交性</a>，から<span class="Red-Large-Bold">0</span>となります．</p>
+<p>第二項も，<a href="Fourier-02.html">直交性</a>，から，<span class="Red-Bold">n=m</span>，の時のみ値を持ち，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   \int_0^T f(x) \cdot sin \frac{2 \pi m x}{T} \ dx =    \int_0^T   b_m \ \left( sin \frac{2 \pi m x}{T} \right)^2 \ dx\)</span></p>
+<p>となります．式を変形して，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    =    \int_0^T   b_m \ \left( 1 \color{red}{-} cos \frac{4 \pi m x}{T} \right) \ dx\)</span></p>
+<p>第二項は，<a href="Fourier-01.html">三角関数の一周期の積分</a>，から<span class="Red-Large-Bold">0</span>となりますので，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    =    \int_0^T   \frac{b_m}{2}  \ dx\)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    =    \int_0^T   \frac{b_m}{2}  \ dx\)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    =\frac{b_m}{2}  \ T \)</span></p>
+<p>したがって，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   b_m = \frac{2}{T} \int_0^T f(x) \cdot sin \frac{2 \pi m x}{T} \ dx \)</span></p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p>さて，今までは周期が<span class="Blue-Large-Bold">T</span>の関数を用いましたが，<span class="Blue-Large-Bold">2π</span>の場合はどうなるかを見ていきましょう．</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="Fourier-03.html"><img src="L-arrow.png" alt="l" width="57" height="34" border="0" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="Fourier-05.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

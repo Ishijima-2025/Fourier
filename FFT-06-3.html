@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>FFT-06-3</title>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+.style10 {color: #000000; }
+</style>
+</head>
+
+<body>
+<p>まずは変数変換をします．</p>
+<p>\(\Large 2 \pi n \equiv x \)</p>
+<p>\(\Large 2 \pi \cdot dn = dx \)</p>
+<p>\(\Large dn = \frac{1}{2 \pi} dx \)</p>
+<p>ここで，重要なのが，積分の範囲．</p>
+<p>\(\Large  0 \sim n \sim 1 \)</p>
+<p>\(\Large  0 \sim x \sim 2 \pi \)</p>
+<p>となります．<br />
+  従って，</p>
+<p>\(\Large 
+\begin{eqnarray} P_{W(n)} &amp;=&amp; \frac{1}{8 \pi}  \displaystyle \int_ 0^{2 \pi} \left( 1 - cos x \right)^2 dx \\<br />
+&amp;=&amp; \frac{1}{8 \pi}  \displaystyle \int_ 0^{2 \pi} \left( 1 - 2 cos x + cos^2 x\right) dx \<br />
+\end{eqnarray}　\)　</p>
+<p>となります．<br />
+ここで，三角関数の公式，</p>
+<p>\(\Large  cos A \cdot cos B = \frac{1}{2} \left[ cos (A+B) + cos (A-B) \right] \)</p>
+<p>\(\Large A = B =x \)</p>
+<p>\(\Large  cos^2 x = \frac{1}{2} cos 2x + \frac{1}{2} \)</p>
+<p>を使って，</p>
+<p>\(\Large 
+  \begin{eqnarray} P_{W(n)} &amp;=&amp; \frac{1}{8 \pi}  \displaystyle \int_ 0^{2 \pi} \left(\frac{3}{2} - 2 cos x + cos 2x \right) dx \\<br />
+&amp;=&amp; \frac{1}{8 \pi}   \left[\frac{3}{2}x - 2 sin x + \frac{1}{2} sin 2x \right]_0^{2 \pi} dx \\<br />
+&amp;=&amp; 
+\frac{1}{8 \pi} \cdot \frac{6 \pi}{2} \\<br />
+&amp;=&amp; \frac{3}{8} \\<br />
+&amp;=&amp; 0.375 \\
+<br />
+\end{eqnarray}　\)　</p>
+<p>となります．<br />
+  つまり，<br />
+  <span class="X-Large-Bold-RED">0.375倍</span><br />
+  が補正の値となります．</p>
+<p>では，実際に確かめてみましょう．</p>
+<p><span class="style10"><a href="FFT-06-2.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="FFT-06-4.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+<p>&nbsp;</p>
+</body>
+</html>

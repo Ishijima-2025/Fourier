@@ -1,0 +1,101 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Fourier</title>
+<link href="250219.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+</head>
+
+	
+
+
+
+
+<title>Laplace</title>
+</head>
+
+<body>
+<p class="Red-Large-Bold">フーリエ級数展開-02</p>
+<p class="Red-Large-Bold">&nbsp;</p>
+<p>次に，フーリエ級数展開，においていちばん重要な，<span class="Red-Large-Bold">直交性</span>，についてまとめてみようと思います．この公式は，</p>
+<p>　<span class="Red-Bold">異なる周波数の三角関数の積の積分（周期）は</span><span class="Red-Large-Bold">0</span><span class="Red-Bold">になる</span></p>
+<p>というものです．実際に確認していきましょう．</p>
+<p>&nbsp;</p>
+<p class="Red-Large-Bold">・cos × cos</p>
+<p>まず計算を簡単にするために，周期Tを2π，とします．</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   \int_0^{T} cos \ \frac{2 \pi mx}{T} \cdot cos \ \frac{2 \pi mx}{T} \ dx \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   = \int_0^{2 \pi} cos \ (mx) \cdot cos \ (nx) \ dx \)</span></p>
+<p>を求めていきます．三角関数の公式から，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    cos \ (mx) \cdot cos \ (nx) = \frac{1}{2} \left[ cos \{(m+n) x \} + cos \{ (m-n) x \} \right] \)</span></p>
+<p>より，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   \int_0^{2 \pi} cos \ (mx) \cdot cos \ (nx) \ dx = \int_0^{2 \pi} \frac{1}{2} \left[ cos \{ (m+n)x \} + cos \{(m-n)x \} \right] \ dx \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   = \frac{1}{2} \int_0^{2 \pi} cos \{ (m+n)x \} \ dx +  \frac{1}{2} \int_0^{2 \pi} cos \{ (m-n)x \} \ dx\)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   = \frac{1}{2} \left[ \frac{ sin \{ (m+n)x \} }{m+n} \right]_0^{2 \pi}   <br>
+  + \frac{1}{2} \left[ \frac{ sin \{ (m-n)x \} }{m-n} \right]_0^{2 \pi}
+\)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   =  \frac{sin \ 2 \pi (m+n)}{2(m+n)}  
++ \frac{sin \ 2 \pi (m-n)}{2(m-n)}\)</span></p>
+<p>sin関数に，2π，が入っているので，<br>
+  　<span class="Red-Bold">m+n, m-n，が整数，かつ，m≠n，の場合，この計算は</span><span class="Red-Large-Bold">０</span><span class="Red-Bold">となる</span><br>
+事がわかります．</p>
+<p>しかし，sin(nπ）も０ですね，つまり，m=1.5, n=0.5でもm+n, m-n<span class="X-Large-Bold-RED"></span>，は整数となりますので，<br>
+　0, 0.5, 1.0, 1.5, 2.0, 2.5 .....<br>
+という2m, 2nが整数の場合にも０となります．</p>
+<p>ですが，フーリエ級数展開の場合には，ｎを整数として計算しますので，異なる周期の場合の積は０となります．</p>
+<p>&nbsp;</p>
+<p><span class="Red-Large-Bold">・sin × sin</span></p>
+<p>この場合にも，三角関数の公式から，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    sin \ (mx) \cdot sin \ (nx) = \frac{1}{2} \left[ cos \{(m-n) x \} - cos \{ (m+n) x \} \right] \)</span></p>
+<p>となり，符号が異なるだけなので，cos×cosの場合と同様，<span class="Red-Bold">この計算は</span><span class="Red-Large-Bold">０</span><span class="Red-Bold">となります．</span></p>
+<p>&nbsp;</p>
+<p><span class="Red-Large-Bold">・sin × cos</span></p>
+<p>この場合にも，三角関数の公式から，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    sin \ (mx) \cdot cos \ (nx) = \frac{1}{2} \left[ sin \{(m+n) x \} + sin \{ (m-n) x \} \right] \)</span></p>
+<p>となります</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   \int_0^{2 \pi} sin \ (mx) \cdot cos \ (nx) \ dx = \int_0^{2 \pi} \frac{1}{2} \left[ sin \{ (m+n)x \} + sin \{(m-n)x \} \right] \ dx \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   = \frac{1}{2} \left[ \frac{ -cos \{ (m+n)x \} }{m+n} \right]_0^{2 \pi} <br>
++ \frac{1}{2} \left[ \frac{ -cos \{ (m-n)x \} }{m-n} \right]_0^{2 \pi}
+\)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   = -\frac{1}{2} \left\{ \frac{ cos \{ 2 \pi (m+n) \}-1 }{m+n} + \frac{ cos \{ 2 \pi (m-n) \}-1 }{m-n}\right\} 
+\)</span></p>
+<p>m≠n，かつ整数の場合，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    -\frac{1}{2} \left\{ \frac{ cos \{ 2 \pi (m+n) \}-1 }{m+n} + \frac{ cos \{ 2 \pi (m-n) \}-1 }{m-n}\right\} 
+    <br>
+    = 
+-\frac{1}{2} \left\{ \frac{1-1 }{m+n} + \frac{ 1-1 }{m-n}\right\} 
+=0 \)</span></p>
+<p>m=n，かつ整数の場合も，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    -\frac{1}{2} \left\{ \frac{ cos \{ 2 \pi (m+n) \}-1 }{m+n} + \frac{ cos \{ 2 \pi (m-n) \}-1 }{m-n}\right\} <br>
+  = 
+  -\frac{1}{2} \left\{ \frac{1-1 }{m+n} + \frac{ 1-1 }{m-n}\right\} 
+=0 \)</span></p>
+<p>となり，<span class="Red-Bold">この計算は</span><span class="Red-Large-Bold">０</span><span class="Red-Bold">となります．</span></p>
+<p>&nbsp;</p>
+<p>次は，いよいよ，<span class="Blue-Bold">フーリエ級数展開</span>，です．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="Fourier-01.html"><img src="L-arrow.png" alt="l" width="57" height="34" border="0" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="Fourier-03.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

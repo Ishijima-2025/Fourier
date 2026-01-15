@@ -1,0 +1,97 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Fourier</title>
+<link href="250219.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+</head>
+
+	
+
+
+
+
+<title>Laplace</title>
+</head>
+
+<body>
+<p class="Red-Large-Bold">フーリエ級数展開-05</p>
+<p class="Red-Large-Bold">&nbsp;</p>
+<p>フーリエ級数展開は，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   f(x) = \color{red}{\frac{a_0}{2}} + \sum_{n=1}^{ \infty} \left( a_n \ cos \frac{2 \pi n x}{T} + b_n \ sin \frac{2 \pi n x}{T}\right) \)</span></p>
+<p>で，各定数は，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_0 = \color{red}{\frac{2}{T}} \int_0^T f(x) \ dx \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_n = \frac{2}{T} \int_0^T f(x) \ cos \frac{2 \pi n x}{T} \ dx \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   b_n = \frac{2}{T} \int_0^T f(x) \ sin \frac{2 \pi n x}{T} \ dx \)</span></p>
+<p>となることを今まで説明していきました．．ここで，ｎ，は整数となります．</p>
+<p>これを異なる周期，たとえば，<span class="Red-Bold">‐πからπまで</span>の周期の場合にどうなるかを考えていきます．</p>
+<p>&nbsp;</p>
+<p><span class="Red-Large-Bold">‐πからπまで</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   x = \frac{T}{2 \pi} t \)</span></p>
+<p>により変数返還すると，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   dx = \frac{T}{2 \pi} \ dt \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   0 \ \sim \ x \sim \ T \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   0 \ \sim \ t \sim \ 2 \pi \)</span></p>
+<p>となるので，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   f(x) = \color{red}{\frac{a_0}{2}} + \sum_{n=1}^{ \infty} \left( a_n \ cos \frac{2 \pi n x}{T} + b_n \ sin \frac{2 \pi n x}{T}\right) \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    = \color{red}{\frac{a_0}{2}} + \sum_{n=1}^{ \infty} \left( a_n \ cos \ nx + b_n \ sin \ nx \right) \)</span></p>
+<p>で，各定数は，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_0 = \color{red}{\frac{2}{T}} \int_0^T f(x) \ dx = \color{red}{\frac{2}{T}} \int_0^{2 \pi} f(t) \  \frac{T}{2 \pi} \ dt = \color{red}{\frac{1}{\pi}} \int_0^{2 \pi} f(t) \   dt\)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_n = \frac{2}{T} \int_0^T f(x) \ cos \frac{2 \pi n x}{T} \ dx = \frac{2}{T} \int_0^{2 \pi} f(t) \ cos \ (nx) \  \frac{T}{2 \pi}  = \frac{1}{\pi} \int_0^{2 \pi} f(t) \ cos \ (nx) \  dx\)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   b_n = \frac{2}{T} \int_0^T f(x) \ sin \frac{2 \pi n x}{T} \ dx= \frac{2}{T} \int_0^{2 \pi} f(t) \ sin \ (nx) \  \frac{T}{2 \pi}  = \frac{1}{\pi} \int_0^{2 \pi} f(t) \ sin \ (nx) \  dx\)</span></p>
+<p>となります．ここで，<a href="Fourier-01.html">このページ</a>の，&quot;<span class="Red-Bold">周期関数を周期の範囲で積分した場合，積分範囲をシフトしても結果が変わらない</span>&quot;，を使えば，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_0 =  \color{red}{\frac{1}{\pi}} \int_0^{2 \pi} f(t) \   dt =  \color{red}{\frac{1}{\pi}} \int_{- \pi}^{ \pi} f(t) \   dt \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_n =  \frac{1}{\pi} \int_0^{2 \pi} f(t) \ cos \ (nt) \  dt =  \frac{1}{\pi} \int_{ - \pi}^{ \pi} f(t) \ cos \ (nt) \  dt\)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   b_n = \frac{1}{\pi} \int_0^{2 \pi} f(t) \ sin \ (nt) \  dt = \frac{1}{\pi} \int_{- \pi}^{ \pi} f(t) \ sin \ (nt) \  dt\)</span></p>
+<p>となります．‐πからπまでの計算を行いましたが，<span class="Red-Bold">-LからL</span>の周期関数も同様に行えば計算できます．</p>
+<p>&nbsp;</p>
+<p class="Red-Large-Bold">ーL～L</p>
+<p>‐πからπのフーリエ級数展開の式，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    f(x) = \color{red}{\frac{a_0}{2}} + \sum_{n=1}^{ \infty} \left( a_n \ cos \ nx + b_n \ sin \ nx \right) \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_0 =  \color{red}{\frac{1}{\pi}} \int_{- \pi}^{ \pi} f(x) \   dx \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_n  =  \frac{1}{\pi} \int_{ - \pi}^{ \pi} f(x) \ cos \ (nx) \  dx\)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   b_n  = \frac{1}{\pi} \int_{- \pi}^{ \pi} f(x) \ sin \ (nx) \  dx\)</span></p>
+<p>に，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   x = \frac{\pi}{L} t \)</span></p>
+<p>により変数返還すると，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   dx = \frac{\pi}{L} \ dt \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   - \pi \ \sim \ x \sim \ \pi \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   -L \ \sim \ t \sim \ L \)</span></p>
+<p>により，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    f(t) = \color{red}{\frac{a_0}{2}} + \sum_{n=1}^{ \infty} \left( a_n \ cos \ n \frac{ \pi}{L}t + b_n \ sin \  n \frac{ \pi}{L}t  \right) \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_0 =  \color{red}{\frac{1}{\pi}} \int_{- \pi}^{ \pi} f(x) \   dx = \color{red}{\frac{1}{\pi}} \int_{- L}^{ L} f(t) \frac{ \pi}{L} \   dt  = \color{red}{\frac{1}{L}} \int_{- L}^{ L} f(t)  \   dt\)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_n  =  \frac{1}{\pi} \int_{ - \pi}^{ \pi} f(t) \ cos \ (nt) \  dt   =  \frac{1}{\pi} \int_{ - L}^{ L} f(t) \ \frac{ \pi}{L}t \ cos \ \left( n\frac{ \pi}{L}t \right) \  dt<br />
+=  \frac{1}{L} \int_{ - L}^{ L} f(t) \ cos \ \left( n\frac{ \pi}{L}t \right) \  dt \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   b_n  = \frac{1}{\pi} \int_{ - \pi}^{ \pi} f(t) \ sin \ (nt) \  dt   =  \frac{1}{\pi} \int_{ - L}^{ L} f(t) \ \frac{ \pi}{L}t \ sin \ \left( n\frac{ \pi}{L}t \right) \  dt<br />
+=  \frac{1}{L} \int_{ - L}^{ L} f(t) \ sin \ \left( n\frac{ \pi}{L}t \right) \  dt \)</span></p>
+<p>となります，なかなかややこしいですが．．．</p>
+<p>&nbsp;</p>
+<p>次からは，実際にいろいろな波形をフーリエ級数展開してみましょう</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="Fourier-04.html"><img src="L-arrow.png" alt="l" width="57" height="34" border="0" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="Fourier-06.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

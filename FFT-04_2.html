@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>無題ドキュメント</title>
+<style type="text/css">
+<!--
+.style1 {color: #0000FF}
+.style2 {
+	color: #FF0000;
+	font-size: large;
+	font-weight: bold;
+}
+.style3 {color: #0000FF; font-size: large; font-weight: bold; }
+-->
+</style>
+</head>
+
+<body>
+<h1 class="style1">実効値の計算の仕方</h1>
+<p>さて，実効値の求め方ですが，まずは，<span class="style2">直流</span>の場合を考えてみましょう．<br />
+  <span class="style1"></span>  <span class="style3">電圧，電流，抵抗</span>との間には，</p>
+<p><img src="FFT-03.gif" width="82" height="32" /></p>
+<p>の関係があります．<br />
+ここで，<br />
+<span class="style3">　V：電圧<br />
+　R：抵抗<br />
+　I：電流</span><br />
+です．<br />
+<span class="style3">電力（P)</span>は，</p>
+<p><img src="FFT-04.gif" width="102" height="96" /></p>
+<p>となります．</p>
+<p>では，<span class="style2">交流</span>の場合はどうなるのでしょう？<br />
+電圧，電流ともに時間とともに変化するので，このままでは計算できませんね．</p>
+<p>そこで，</p>
+<p><img src="FFT-05.gif" width="156" height="72" /></p>
+<p>とおくと，電力は，</p>
+<p><img src="FFT-06.gif" width="202" height="40" /></p>
+<p>となります．<br />
+これを1周期分で積分してみましょう．</p>
+<p><img src="FFT-07.gif" width="354" height="80" /></p>
+<p>ここで，</p>
+<p><img src="FFT-08.gif" width="218" height="62" /></p>
+<p>なので，</p>
+<p><img src="FFT-09.gif" width="400" height="300" /></p>
+<p>となり，実際の<span class="style3">電圧の振幅をルート2で割ったもの</span>が，<span class="style2">実質的（実効的）な電圧</span>となります．</p>
+<p><a href="FFT-04.html">もどる</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

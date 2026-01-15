@@ -1,0 +1,132 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Fourier</title>
+<link href="250219.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+</head>
+
+	
+
+
+
+
+<title>Laplace</title>
+</head>
+
+<body>
+<p class="Red-Large-Bold">フーリエ級数展開-08</p>
+<p>&nbsp;</p>
+<p>次は<span class="Red-Bold">三角波</span></p>
+<p>&nbsp;</p>
+<p class="Red-Large-Bold">・三角波</p>
+<p>三角波，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   f(x) = |x| \hspace{20pt} ( - \pi \leq x &lt; \pi) \)</span></p>
+<p>書き換えると，</p>
+<p>\( \Large = \left\{
+\begin{array}{c} \hspace{10pt} -x \hspace{20pt} ( \pi \leq  x &lt; 0) \\  \hspace{20pt} x  \hspace{20pt} (0 \leq x &lt; \pi) \end{array} \right. \)</p>
+<p>の場合を考えます．</p>
+<p>フーリエ級数展開は，周期が　‐π～π，の場合には，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    f(x) = \color{red}{\frac{a_0}{2}} + \sum_{n=1}^{ \infty} \left( a_n \ cos \ (n x) + b_n \ sin \  (n x) \right) \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_0 = \color{red}{\frac{1}{\pi}} \int_{- \pi}^{ \pi} f(x)  \   dx \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_n  
+  =  \frac{1}{\pi} \int_{ - \pi}^{ \pi} f(x) \ cos \ \left( nx \right) \  dx \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   b_n  
+  =  \frac{1}{\pi} \int_{ - \pi}^{ \pi} f(x) \ sin \ \left( nx \right) \  dx \)</span></p>
+<p>は，<a href="Fourier-06.html">ここ</a>，で解説しました．</p>
+<p>&nbsp;</p>
+<p class="Red-Large">・a<sub>0</sub></p>
+<p>積分範囲によって，f(x)の値が異なるので，それぞれの領域の積分に分けていきます．</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   \frac{a_0}{2} = \frac{1}{2} \color{red}{\frac{1}{\pi}}\int_{- \pi}^{ \pi} f(x)  \   dx <br>
+  = \frac{1}{2 \pi}  \left\{ \int_{- \pi}^{ 0} (-x)  \   dx + \int_{0}^{ \pi} (x)  \   dx \right\} <br />
+  = \frac{1}{2 \pi}  \left\{  \left[ - \frac{1}{2} x^2 \right]_{- \pi}^0 +  \left[ \frac{1}{2} x^2 \right]_0^{ \pi}\right\} <br />
+  = \frac{1}{2 \pi}  \left\{  \frac{1}{2} \pi^2 + \frac{1}{2} \pi^2 \right\} = \color{red}{\frac{1}{2} \pi }<br>
+\)</span></p>
+<p>&nbsp;</p>
+<p><span class="Red-Large">・a<sub>n</sub></span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_n  
+=  \frac{1}{\pi} \int_{ - \pi}^{ \pi} f(x) \ cos \ \left( nx \right) \  dx  \)</span></p>
+<p>ですが，f(x)，cos (nx)，ともに偶関数となります．したがって，積分範囲を半分（0～π）で計算して2倍すればいいことになりますので，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_n  
+=  \frac{2}{\pi} \int_{ 0}^{ \pi} f(x) \ cos \ \left( nx \right) \  dx =  \frac{2}{\pi} \int_{ 0}^{ \pi} x \ cos \ \left( nx \right) \  dx  \)</span></p>
+<p>を計算すればいいことになります．</p>
+<p>&nbsp;</p>
+<p>これは，<a href="Integration by parts-01.html">ここ</a>，で説明した，瞬間部分積分，を使えば簡単に解け，</p>
+<p>\( \Large     \displaystyle  \int x \ cos \ (n x) \ dx \)</p>
+<p>を考えていきます．瞬間部分積分を使えば，</p>
+<table width="269" border="1">
+  <tbody>
+    <tr>
+      <td width="23" style="text-align: center">+</td>
+      <td width="21" style="text-align: center">x</td>
+      <td width="203" style="text-align: center">\( \Large     \displaystyle  \frac{1}{n} sin \ (n x) \)<sup></sup></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">\( \Large     \displaystyle  - \frac{1}{n^2} cos \ (n x) \)<sup></sup></td>
+    </tr>
+  </tbody>
+</table>
+<p>\( \Large     \displaystyle  \int x \ cos \ (n x) \ dx =\frac{1}{n}  x \ sin \ ( n x) + \frac{1}{n^2} x \ cos \ (nx) + C\)</p>
+<p>となります．したがって，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_n  
+=  \frac{2}{\pi} \int_{ 0}^{ \pi} x \ cos \ \left( nx \right) \  dx  \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle     
+=  \frac{2}{\pi} \left[ \frac{1}{n}  x \ sin \ ( n x) + \frac{1}{n^2} x \ cos \ (nx) \right]_0^{ \pi}  \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle     
+=  \frac{2}{\pi} \left[ \frac{1}{n}  \{ \pi \ sin \ ( n \pi) - 0 \ sin \ (n \ 0) \} + \frac{1}{n^2} \{  cos \ (n \pi) - 1 \} \right]  \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle     
+=  \frac{2}{\pi n^2 }  \{  cos \ (n \pi) - 1 \}   \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle     
+=  \frac{2}{\pi n^2 }  \{   (-1)^n - 1 \}   \)</span></p>
+<p>\( \Large = \left\{
+\begin{array}{c} \hspace{10pt} 0 \hspace{20pt} ( n \ is \ even ) \\  \hspace{20pt} - \frac{4}{ \pi n^2}  \hspace{20pt} ( n \ is \ odd) \end{array} \right. \)</p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p><span class="Red-Large">・b<sub>n</sub></span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   b_n  
+  =  \frac{1}{\pi} \int_{ - \pi}^{ \pi} f(x) \ sin \ \left( nx \right) \  dx  \)</span></p>
+<p>ですが，f(x)が偶関数，sinが奇関数なので，奇関数となります． -π～πの積分なので奇関数の場合は０となります，したがって， </p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   b_n  
+=0  \)</span></p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p>したがって，まとめると，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle     
+f(x) =  \frac{1}{2} \pi + \sum_{n=1}^{\infty} \frac{2}{\pi n^2 }  \{   (-1)^n - 1 \}   \cdot cos (nx) \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle     
+f(x) =  \frac{1}{2} \pi - \frac{4}{ \pi} \left\{  cos x + \frac{1}{3^2} cos (3x) + + \frac{1}{5^2} cos (5x) +...... \right\} \)</span></p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p>グラフで図示すると，</p>
+<p><img src="triangle-overplot.jpg" width="689" height="401" alt=""/></p>
+<p>となります．三角はと正弦波は似ているので，すぐに収束しているみたいですね．</p>
+<p>&nbsp;</p>
+<p>次は，<span class="Red-Large">ノコギリ波</span>，です．</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="Fourier-07.html"><img src="L-arrow.png" alt="l" width="57" height="34" border="0" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="Fourier-09.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

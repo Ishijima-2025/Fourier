@@ -1,0 +1,141 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Fourier</title>
+<link href="250219.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+</head>
+
+	<meta charset="UTF-8">
+
+
+
+
+<title>Laplace</title>
+</head>
+
+<body>
+<p class="Red-Large-Bold">フーリエ級数展開-14</p>
+<p>&nbsp;</p>
+<p><a href="Fourier-08.html">ここ</a>で，三角関数を用いて解いた<span class="Red-Bold">三角波</span>を複素数表示で解いてみましょう．</p>
+<p>&nbsp;</p>
+<p class="Red-Large-Bold">・三角波</p>
+<p>三角波，</p>
+<p>\( \Large f(x) = |x|  \hspace{10pt} (- \pi \leq x &lt; \pi ) \)</p>
+<p>書き換えると，</p>
+<p>\( \Large f(x) = \left\{
+  \begin{array}{c} \hspace{10pt} -x \hspace{20pt} (-\pi \leq  x &lt; 0) \\  \hspace{10pt} x  \hspace{20pt} (0 \leq x &lt; \pi) \end{array} \right. \)</p>
+<p>の場合を考えます．</p>
+<p>フーリエ級数展開は， </p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle       f(x) =  \sum_{n= - \infty}^{ \infty}  C_{n} \cdot  e^{i \frac{ n \pi}{L}x } \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle C_n = \frac{1}{2L} \int_{ - L}^{ L} f(x) \ \displaystyle  e^{- i \frac{ n \pi}{L}x } \  dx  \)</span></p>
+<p>となり，積分範囲から，<span class="Blue-Bold">L＝ π</span>，となるので，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle       f(x) =  \sum_{n= - \infty}^{ \infty}  C_{n} \cdot  e^{i n  x } \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle C_n = \frac{1}{2 \pi} \int_{ - \pi}^{ \pi} f(x) \ \displaystyle  e^{- i  n  x} \  dx  \)</span></p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p><span class="Red-Bold">n=0</span>，の場合は，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle C_0 = \frac{1}{2  \pi } \int_{ - \pi}^{ \pi} f(x)  \  dx  <br />
+= \frac{1}{2  \pi} \left\{ \int_{ - \pi}^{ 0} (-x)  \  dx + \int_{0}^{ \pi} x  \  dx \right\} \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle 
+= \frac{1}{2  } \left\{ -\left[ \frac{1}{2} x \right]_{- \pi}^0 + \left[ \frac{1}{2} x \right]_0^{ \pi} \right\} <br />
+= 
+\frac{1}{2 \pi } \left( \frac{ \pi^2}{2}+ \frac{ \pi^2}{2} \right) = \frac{\pi}{2} \)</span></p>
+<p>&nbsp;</p>
+<p><span class="Red-Bold">n≠0</span>，の場合は，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle C_n = \frac{1}{2  \pi } \int_{ - \pi}^{ \pi} f(x)  \cdot  e^{-i n  x }\  dx <br />
+  = \frac{1}{2  \pi} \left\{ \int_{ - \pi}^{ 0} (-x)  \cdot  e^{-i n  x } \  dx + \int_{0}^{ \pi}   x \   e^{-i n  x }\  dx \right\}<br>
+= \frac{1}{2  \pi} \left\{ -\int_{ - \pi}^{ 0} x  \  e^{-i n  x } \  dx + \int_{0}^{ \pi}   x \   e^{-i n  x }\  dx \right\}\)</span></p>
+<p>&nbsp;</p>
+<p>これは，<a href="Integration by parts-01.html">ここ</a>，で説明した，瞬間部分積分，を使えば簡単に解け，</p>
+<p>\( \Large     \displaystyle  \int x \ e^{ -inx} \ dx \)</p>
+<p>を考えていきます．瞬間部分積分を使えば，</p>
+<table width="598" border="1">
+  <tbody>
+    <tr>
+      <td width="40" style="text-align: center">+</td>
+      <td width="40" style="text-align: center">x</td>
+      <td width="539" style="text-align: center">\( \Large     \displaystyle  -\frac{1}{in} e^{-inx}  \)<sup></sup></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">-</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">\( \Large     \displaystyle  \left(-\frac{1}{in} \right) \left(-\frac{1}{in} \right) e^{-inx} = - \frac{1}{n^2} e^{-inx} \)<sup></sup><sup></sup></td>
+    </tr>
+  </tbody>
+</table>
+<p>\( \Large     \displaystyle  - \int x \ e^{ -inx} \ dx = + \frac{1}{in} x \ e^{-inx} - \frac{1}{n^2} e^{-inx} + C \)</p>
+<p>\( \Large     \displaystyle  \int x \ e^{ -inx} \ dx = - \frac{1}{in} x \ e^{-inx} + \frac{1}{n^2} e^{-inx} + C \)</p>
+<p>となります．したがって，それぞれ，</p>
+<p>\( \Large     \displaystyle  - \int_{ -\pi}^0 x \ e^{ -inx} \ dx = \left[ \frac{1}{in} x \ e^{-inx} - \frac{1}{n^2} e^{-inx} \right]_{- \pi}^0 \)</p>
+<p>\( \Large     \displaystyle   = \left( 0 - \frac{1}{n^2} \right) - \left(  \frac{- \pi}{in}  \ e^{in \pi} - \frac{1}{n^2} e^{in \pi} \right) \)</p>
+<p>\( \Large     \displaystyle   =   \frac{1}{n^2}  \ (  e^{in \pi} - 1) + \frac{\pi}{in} e^{in \pi}  \)</p>
+<p>同様に，</p>
+<p>\( \Large     \displaystyle  \int_0^{ \pi} x \ e^{ -inx} \ dx = \left[ -\frac{1}{in} x \ e^{-inx} + \frac{1}{n^2} e^{-inx} \right]_0^{ \pi} \)</p>
+<p>\( \Large     \displaystyle   =  \left(  \frac{- \pi}{in}  \ e^{-in \pi} + \frac{1}{n^2} e^{-in \pi} \right) -\left( 0 + \frac{1}{n^2} \right)\)</p>
+<p>\( \Large     \displaystyle   =   \frac{1}{n^2}  \ (  e^{-in \pi} -1 ) - \frac{\pi}{in} e^{-in \pi}  \)</p>
+<p>となります．指数の肩の極性が異なることに注意です．まとめると，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle 
+\int_{ - \pi}^{ 0} (-x)  \cdot  e^{-i n  x } \  dx + \int_{0}^{ \pi}   x \   e^{-i n  x }\  dx  \)</span></p>
+<p>\( \Large     \displaystyle   =   \frac{1}{n^2}  \ (  e^{in \pi} -1) + \frac{1}{in} e^{in \pi}  + \frac{1}{n^2}  \ (  e^{-in \pi} -1 ) - \frac{1}{in} e^{-in \pi}\)</p>
+<p>\( \Large     \displaystyle   =   \frac{1}{n^2}  \ ( e^{ in \pi} +e^{in \pi} -2 ) + \frac{\pi }{in} (e^{in \pi}  - e^{-in \pi}) \)</p>
+<p>となります．ここで，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle 
+e^{i n \pi} = e^{-i n \pi} = (-1)^n \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle 
+e^{i n \pi} - e^{-i n \pi} = 0 \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle 
+e^{i n \pi} + e^{-i n \pi} = 2 (-1)^n \)</span></p>
+<p>となりますので，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle C_n = \frac{1}{2  \pi } \int_{ - \pi}^{ \pi} f(x)  \cdot  e^{-i n  x }\  dx \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle = \frac{1}{2  \pi } \frac{1}{n^2} \left\{ 2 (-1)^n -2 \right\} \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle =  \frac{1}{\pi n^2} \left\{  (-1)^n -1 \right\} \)</span></p>
+<p>\( \Large = \left\{
+\begin{array}{c} \hspace{10pt} - \frac{2}{ \pi  n^2 } \hspace{20pt} ( n = odd ) \\  \hspace{20pt} 0  \hspace{20pt} (n = even) \end{array} \right. \)</p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p>今回の計算では，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle f(x) = \frac{ \pi}{2} + \sum_{n=1}^{ \infty}  ( C_{-n} \cdot  e^{-i n x }  +   C_{n} \cdot  e^{i n x }) \)</span></p>
+<p>となることは前ページに記載しました</p>
+<p>第二項，第三項はそれぞれ，オイラーの公式から，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    C_{n} \cdot  e^{i n x } =  \frac{1}{ \pi  n^2} \left\{ 1-(-1)^n \right\} \{ cos (nx) + i \ sin (nx) \} \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    C_{-n} \cdot  e^{-i n x } = -\frac{1}{ \pi  n^2} \left\{ 1-(-1)^n \right\}\{ cos (nx) - i \ sin (nx) \} \)</span></p>
+<p>となるので，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    C_{n} \cdot  e^{i n x } +     C_{-n} \cdot  e^{-i n x } =  \frac{1}{ \pi  n^2} \left\{ (-1)^n -1 \right\} \left[ \{ cos (nx) + i \ sin (nx) \} - \{cos (nx) - i \ sin (nx) \} \right] \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle     =  \frac{2}{ \pi  n^2} \left\{ (-1)^n -1 \right\}\left[   \ cos (nx) \right] \)</span></p>
+<p>となりますので，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle f(x) = C_0 + \sum_{n=1, odd}^{ \infty}  ( C_{-n} \cdot  e^{-i n x }  +   C_{n} \cdot  e^{i n x }) \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle= \frac{1}{2 \pi } - \sum_{n=1, odd}^{ \infty}    \frac{4}{ \pi n^2 } \left[   \frac{ cos (nx)}{n} \right] \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle=    \frac{1}{2 \pi } - \frac{4}{ \pi} \left( cosn \ x + \frac{1}{3^2} cos \ 3x +  \frac{1}{5^2} cos \ 5x + ........... \right) \)</span></p>
+<p><img src="triangle-overplot.jpg" width="689" height="401" alt=""/></p>
+<p>と，<a href="Fourier-08.html">三角関数の場合</a>，と同じ結果となります．</p>
+<p>　</p>
+<p>次は，<span class="Blue-Bold">ノコギリ波</span>です．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="Fourier-13.html"><img src="L-arrow.png" alt="l" width="57" height="34" border="0" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="Fourier-15.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

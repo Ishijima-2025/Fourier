@@ -1,0 +1,109 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Fourier</title>
+<link href="250219.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+</head>
+
+	
+
+
+
+
+<title>Laplace</title>
+</head>
+
+<body>
+<p class="Red-Large-Bold">フーリエ級数展開-07</p>
+<p>&nbsp;</p>
+<p>周期や振幅を変えた矩形波を検討していきます．この条件は，<a href="https://w3e.kanazawa-it.ac.jp/math/q-and-a/fourier/henkan-tex.cgi?target=/math/q-and-a/fourier/question11.html" target="_blank">ここ</a>，のサイトを参考にしました，ありがとうございます．</p>
+<p>&nbsp;</p>
+<p class="Red-Large-Bold">・矩形波_01</p>
+<p>矩形波，</p>
+<p>\( \Large \left\{
+\begin{array}{c} \hspace{10pt} -1 \hspace{20pt} ( \color{red}{-1} \leq  x &lt; 0) \\  \hspace{20pt} \color{red}{2}  \hspace{20pt} (0 \leq x &lt; \color{red}{1}) \end{array} \right. \)</p>
+<p>の場合を考えます．</p>
+<p>周期が，ーL～L，の場合には，<a href="Fourier-05.html">このページ</a>，に記したように，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    f(x) = \color{red}{\frac{a_0}{2}} + \sum_{n=1}^{ \infty} \left( a_n \ cos \ n \frac{ \pi}{L}x + b_n \ sin \  n \frac{ \pi}{L}x \right) \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_0 = \color{red}{\frac{1}{L}} \int_{- L}^{ L} f(x)  \   dx \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_n  
+=  \frac{1}{L} \int_{ - L}^{ L} f(x) \ cos \ \left( n\frac{ \pi}{L}x \right) \  dx \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   b_n  
+=  \frac{1}{L} \int_{ - L}^{ L} f(x) \ sin \ \left( n\frac{ \pi}{L}x \right) \  dx \)</span></p>
+<p>となるので，<span class="Red-Bold">L＝1</span>，となり，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    f(x) = \color{red}{\frac{a_0}{2}} + \sum_{n=1}^{ \infty} \left( a_n \ cos \ (n \pi x) + b_n \ sin \  (n  \pi x) \right) \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_0 =  \int_{- \pi}^{ \pi} f(x)  \   dx \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_n  
+  =   \int_{ - \pi}^{ \pi} f(x) \ cos \ \left( n  \pi x \right) \  dx \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   b_n  
+  =   \int_{ - \pi}^{ \pi} f(x) \ sin \ \left( n  \pi x \right) \  dx \)</span></p>
+<p>を計算すればいいことになります．</p>
+<p>&nbsp;</p>
+<p class="Red-Large">・a<sub>0</sub></p>
+<p>積分範囲によって，f(x)の値が異なるので，それぞれの領域の積分に分けていきます．</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   \frac{a_0}{2} = \frac{1}{2} \int_{- 1}^{ 1} f(x)  \   dx <br>
+  = \frac{1}{2 }  \left\{ \int_{- 1}^{ 0} (-1)  \   dx + \int_{0}^{ 1} (2)  \   dx \right\} <br />
+  = \frac{1}{2 }  \left\{ - [ x ]_{- 1}^0 +  [2x ]_0^{1}\right\} <br />
+  = \frac{1}{2 }  \left\{ - 1 + 2 \right\} = \color{red}{\frac{1}{2}}<br>
+\)</span></p>
+<p>と<span class="Red-Bold">0ではなくなります</span>．</p>
+<p>&nbsp;</p>
+<p><span class="Red-Large">・a<sub>n</sub></span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_n  
+=   \int_{ - 1}^{ 1} f(x) \ cos \ \left( n \pi x \right) \  dx <br />
+=   \left\{ \int_{- }^{ 0} -cos \ (n \pi x) \   dx + \int_{0}^{ 1} 2 \ cos \ (n \pi x) \   dx \right\} \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle =  \left\{  \left[ - \frac{1}{n \pi } sin \ (n \pi x) \right]_{- 1}^0 +  \left[ \frac{2}{n \pi } sin \ (n \pi x) \right]_0^{ 1} \right\}  <br />
+  \)</span></p>
+<p>sin(0)，sin(nπ)，すべて0となりますので，<span class="Red-Bold">a<sub>n</sub>=0</span>，となります．</p>
+<p>&nbsp;</p>
+<p><span class="Red-Large">・b<sub>n</sub></span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   b_n  
+  =   \int_{ - 1}^{ 1} f(x) \ sin \ \left( n \pi x \right) \  dx <br />
+  = \frac{1}{2 \pi}  \left\{ \int_{- 1}^{ 0} -sin \ (nx) \   dx + \int_{0}^{ 1} sin \ (nx) \   dx \right\} \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle =   \left\{  \left[  \frac{1}{n \pi } cos \ (n \pi x) \right]_{- 1}^0 +  \left[ -\frac{1}{n \pi } cos \ (n \pi x) \right]_0^{1} \right\} 
+\)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle = \frac{1}{ n \pi}  \left\{  1 - ( -1 )^n \right\} 
+- \frac{2}{ n \pi}  \left\{   ( -1 )^n - 1 \right\} \)</span></p>
+<p>ここでは，<a href="Fourier-01.html">ここ</a>，で説明した，<span class="Red-Bold">三角関数と±１との関係</span>，を使いました．</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle = \frac{3}{ n \pi}  \left\{  1 - ( -1 )^n \right\} 
+\)</span></p>
+<p>この場合，<br />
+　ｎが偶数：0<br />
+　ｎが奇数：<span class="X-Large-Bold-RED">\( \Large     \displaystyle  \frac{6}{ n \pi} 
+\)</span><br />
+となりますので，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle f(x) = \frac{1}{2} + \frac{6}{  \pi}  \left\{ sin \ ( \pi x )+ \frac{1}{3} sin \ (3 \pi x) + \frac{1}{5} sin \ (5 \pi x) + ........ \right\} 
+\)</span></p>
+<p>となります．</p>
+<p>グラフで図示すると，</p>
+<p><img src="rect-overplot.png" width="636" height="362" alt=""/> </p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p>次は，<span class="Red-Large">三角波</span>，です．</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="Fourier-06.html"><img src="L-arrow.png" alt="l" width="57" height="34" border="0" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="Fourier-08.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

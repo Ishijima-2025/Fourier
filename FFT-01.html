@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>無題ドキュメント</title>
+<style type="text/css">
+<!--
+.style1 {color: #0000FF}
+.style2 {
+	font-size: large;
+	color: #0000FF;
+	font-weight: bold;
+}
+.style4 {font-size: large; color: #FF0000; font-weight: bold; }
+.style5 {
+	font-size: large;
+	color: #FF0000;
+}
+.style10 {color: #000000; }
+-->
+</style>
+</head>
+
+<body>
+<h1 class="style1">フーリエ変換とは</h1>
+<p>さて，本節では，<span class="style2">フーリエ変換</span>を理解して行きましょう．<br />
+さらには，<span class="style2">ＦＦＴ</span>，なるものも．．．<br />
+なかなか敷居が高いものなのです．．．</p>
+<p>そこで，ここでは，そういった基礎は全く飛ばします．<br />
+基礎から理解したい方は，教科書が山ほどあります．<br />
+それに，わかりやすい，<br />
+　「<a href="http://www.lexhippo.gr.jp/publication/" target="_blank">フーリエの冒険</a>」<br />
+なる書籍も．</p>
+<p>ここでは，単純に，<span class="style2">フーリエ変換</span>とは，<br />
+　<span class="style4">波形を周波数成分に分解して表示するもの</span><br />
+とだけ，理解すればいいと思います．<br />
+実際に，実験で得られたデータをいかに使っていくかを理解したいと思います．<br />
+  <span class="style5">　どのくらいの長さのデータをとればいいの？<br />
+  　どのくらいの時間間隔（サンプリングレート）でデータをとればいいの？</span><br />
+と言ったことを考えていきたいと思います．</p>
+<p>まずは，元となる波形を見てみましょう．</p>
+<p><img src="FFT-01.jpg" width="296" height="213" /></p>
+<p>このように，一般的には，<br />
+　横軸：時間<br />
+　縦軸：出力，振幅．．．<br />
+となっています．<br />
+単なるノイズのように見えますね．</p>
+<p>これをフーリエ変換すると，</p>
+<p><img src="FFT-02.jpg" width="292" height="212" /></p>
+<p>このように，１００Ｈｚ，２００Ｈｚのところにピークが立っているのを見ることができます．<br />
+実波形では単なるノイズにしか見えなかった波形が，実はサイン波，しかも二つも含まれていたのですね．<br />
+つまり，フーリエ変換を行うことにより，実波形では見えなかった，見にくかった情報が明らかになっていくのです．<br />
+一般的には，<br />
+　横軸：周波数<br />
+　縦軸：振幅<br />
+となります．</p>
+<p><span class="style10"><a href="index.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="FFT-02.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+</body>
+</html>

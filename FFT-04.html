@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>無題ドキュメント</title>
+<style type="text/css">
+<!--
+.style10 {color: #000000; }
+.style11 {color: #0000FF}
+.style13 {
+	color: #0000FF;
+	font-size: large;
+	font-weight: bold;
+}
+.style14 {
+	color: #FF0000;
+	font-size: large;
+	font-weight: bold;
+}
+.style15 {font-size: large}
+-->
+</style>
+</head>
+
+<body>
+<h1 class="style11">スペクトルの図の意味</h1>
+<p>さて，前ページに示した，フーリエ変換の図をもう一度眺めてみましょう．</p>
+<p><img src="FFT-05.jpg" width="721" height="626" /></p>
+<p>ちょっとプログラムを変更しています．</p>
+<p>左の図の実波形は，</p>
+<p><img src="FFT-01.gif" width="124" height="32" /></p>
+<p>というサイン波を示しています．<br />
+ここで，<br />
+  <span class="style13">　A：振幅<br />
+  　ω：周波数 [1/s]<br />
+  　T：周期 [s]</span><br />
+であり，周波数と周期との関係は，</p>
+<p><img src="FFT-02.gif" width="74" height="62" /></p>
+<p>となっています．<br />
+ですので，<br />
+  <span class="style14">　サイン波の中央から山のピーク：A<br />
+  　山と山との間隔：T</span><br />
+となっています．</p>
+<p>さて，右のフーリエ変換の図を見ると，<br />
+  <span class="style14">　ピークの横軸：1/T<br />
+  　ピークの高さ：A/(2<sup>1/2</sup></span>)<br />
+となっていて，見事対応していることがわかりますね．</p>
+<p>高さが合っていない？<br />
+これは，実効値，を示しているからです．<br />
+実効値に対する説明は，<a href="FFT-04_2.html" class="style15">こちら</a>．．．<br />
+  ピーク値を示す方法もありますが，混乱しないように，
+実際のプログラムなどには，<br />
+　<span class="style14">V<sub>rms</sub></span></p>
+<p>などの表記があります．</p>
+<p>ちなみに．．．二つの周波数の混在した波形は，</p>
+<p><img src="FFT-06.jpg" width="739" height="700" /></p>
+<p>このようにきれいに分離できます．</p>
+<p>次ページではもう少し詳しく，実波形と，フーリエ変換との関係を見ていきましょう．</p>
+<p><span class="style10"><a href="FFT-03.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="FFT-05.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+<p>&nbsp;</p>
+</body>
+</html>

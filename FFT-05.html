@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>無題ドキュメント</title>
+<style type="text/css">
+<!--
+.style1 {color: #0000FF}
+.style2 {
+	font-size: large;
+	color: #0000FF;
+}
+.style3 {
+	font-size: x-large;
+	color: #FF0000;
+	font-weight: bold;
+}
+.style5 {font-size: large; color: #FF0000; font-weight: bold; }
+.style6 {color: #FF0000; font-size: large;}
+.style7 {
+	font-size: medium;
+	color: #000000;
+}
+.style10 {color: #000000; }
+-->
+</style>
+</head>
+
+<body>
+<h1 class="style1">実波形とフーリエ変換</h1>
+<p>さて，もう少し詳しく，実波形と，フーリエ変換との関係を見ていきましょう．<br />
+実際にデータ解析に回す，実波形のデータは，<br />
+　<span class="style2">デジタル化</span><br />
+しています．<br />
+そこで，そのときの情報としては，<br />
+<span class="style3">　サンプリング周波数<br />
+　サンプル数</span><br />
+があります．</p>
+<p><span class="style5">サンプリング周波数</span>とは，<br />
+  <span class="style2">　1秒間に何回データを取得しているか</span><br />
+と言うもので，<span class="style2">次元は，[1/s]</span>，となります．<br />
+この逆数で，<br />
+ 　<span class="style5">サンプリングレート [s]</span><br />
+と言う考え方もあります．<br />
+これは，<br />
+　<span class="style2">何秒に1回，データを取得しているか</span><br />
+と言うものですね．</p>
+<p><span class="style5">サンプル数</span>は，もちろん，<br />
+　<span class="style2">1回の取得でいくつのデータを取得したか</span>，<br />
+となります．</p>
+<p>そこで，得られた波形の全長，サンプル時間は，サンプリングレートの次元を[1/s]で考えると，</p>
+<p><img src="FFT-10.gif" width="122" height="68" /><br />
+    <span class="style2">　ｎ　：　サンプルの数 <br />
+  　S<sub>time</sub>　：　Sampling time [s]<br />
+　S<sub>freq</sub>　：　Sampling frequency [1/s]</span></p>
+<p>となります．<br />
+実際に波形を見てもらった方がわかりやすいでしょう．</p>
+<p><img src="FFT-08.jpg" width="898" height="497" /></p>
+<p>上の図では，<br />
+　サンプリング周波数：周波数 [1/s] = 1000<br />
+　サンプル数：サンプル数 = 1000<br />
+で表しています．<br />
+ですので，実波形の横幅は1秒となります．</p>
+<p>では問題の，フーリエ変換した場合の，<br />
+  <span class="style5">　周波数帯，f<sub>range</sub> [Hz]<br />
+  　周波数のレート，ｄｆ [Hz]</span><br />
+はどのように考えればいいのでしょう？</p>
+<p>これは，各ソフト，によって若干変化しますが，LabView，の関数の場合，このようになっています．</p>
+<p><img src="FFT-11.gif" width="136" height="198" /></p>
+<p>ここで，<br />
+  <span class="style2">　ｄｆ　：　横軸の周波数の最小単位　[Hz]<br />　
+    f<sub>number</sub>　：　横軸の周波数の数<br />　
+    f<sub>range</sub>　：　横軸の周波数の最大値（右端の値） [Hz]</span><br />
+となります．</p>
+<p>つまり，実験データを解析する際に，<br />
+  <span class="style3">　どのくらいの範囲の周波数を解析したいかは，<span class="style1">サンプリング周波数</span>をいじればいい<br />
+  　どのくらいの細かい周波数を解析したいかは，<span class="style1">サンプリング周波数</span>と<span class="style1">サンプル数</span>をいじればいい</span><br />
+と言うことなのです．</p>
+<p class="style6">どのくらいの範囲の周波数を解析したいか<span class="style7">，とは５００Hzまでの周波数のスペクトルを見たい，とか３００Hzまで，とかです．<br />
+</span>どのくらいの細かい周波数を解析したいか<span class="style7">，とは２０Hzの場所を見る場合に，１９，２０，２１Hzごとの変化か，１９．９，２０．０，２０．１Hzで区切るのか，と言うことですね．</span></p>
+<p>次のページでは，窓関数について説明しましょう．</p>
+<p class="style6"><span class="style10"><a href="FFT-04.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="FFT-06.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+</body>
+</html>

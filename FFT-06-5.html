@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>FFT-06-5</title>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+.style10 {color: #000000; }
+</style>
+</head>
+
+<body>
+<p class="Large-Bold-Red">窓関数の補正</p>
+<p>つぎに，スペクトルの場合，どの程度の補正値を求めてみましょう？</p>
+<p>スペクトルの場合は，二乗せずにそのまま積分すればよいので，</p>
+<p>\(\Large W = \displaystyle \int_ 0^1 W(n) dn = \int_0^1 \left[ \frac{1}{2} \cdot \left( 1 - cos (2 \cdot \pi \cdot n) \right) \right] dn \)</p>
+<p>を計算すればよいのですね．<br />
+  この積分を解いてみましょう．</p>
+<p>先ほどと同様に，まずは変数変換をします．</p>
+<p>\(\Large 2 \pi n \equiv x \)</p>
+<p>\(\Large 2 \pi \cdot dn = dx \)</p>
+<p>\(\Large dn = \frac{1}{2 \pi} dx \)</p>
+<p>ここで，重要なのが，積分の範囲．</p>
+<p>\(\Large  0 \sim n \sim 1 \)</p>
+<p>\(\Large  0 \sim x \sim 2 \pi \)</p>
+<p>となります．<br />
+  従って，</p>
+<p>\(\Large 
+  \begin{eqnarray} W &amp;=&amp; \frac{1}{4 \pi}  \displaystyle \int_ 0^{2 \pi} \left( 1 - cos x \right) dx \\<br />
+  &amp;=&amp; \frac{1}{4 \pi}   \left[x - sin \ x\right]_0^{2 \pi}  \\<br />
+  &amp;=&amp; 
+  \frac{1}{4 \pi} 2 \pi \\<br />
+  &amp;=&amp; 0.5 \\<br />
+  \end{eqnarray}　\)　</p>
+<p>となります．<br />
+  つまり，<br />
+  <span class="X-Large-Bold-RED">0.5倍</span><br />
+が補正の値となります．</p>
+<p>では，実際に確かめてみましょう．</p>
+<p><span class="style10"><a href="FFT-06-4.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="FFT-06-6.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>無題ドキュメント</title>
+<style type="text/css">
+<!--
+.style10 {color: #000000; }
+-->
+</style>
+</head>
+
+<body>
+<p>加算平均</p>
+<p>ではまず，波形を用意しましょう．</p>
+<p><img src="FFT-14.jpg" width="671" height="217" /></p>
+<p>この条件は，<br />
+　サンプリング周波数： 1kHz<br />
+　サンプル数： 1024<br />
+　正弦波１：周波数200Hz，振幅1.0<br />
+　正弦波２：周波数100Hz，振幅1.5<br />
+　ノイズ：	ガウスノイズ，標準偏差2.0<br />
+の合成波です.<br />
+なんとなくサイン波見たいのが見えるような見えないような．．</p>
+<p>この波形をフーリエ変換にかけると，</p>
+<p><img src="FFT-15.jpg" width="333" height="219" /></p>
+<p>となり，きれいに，１００，２００Hzのところにピークが見えます．<br />
+ここで，以前の波形とは違うのが，ベースが上がっているところ．<br />
+これは，ノイズを加えたために全体的にベースが上がってるのです．</p>
+<p>ここで得られる情報は，</p>
+<p><img src="FFT-16.jpg" width="319" height="214" /></p>
+<p>この三点，<br />
+　１００Hzのピーク<br />
+　２００Hzのピーク<br />
+　ガウスノイズの大きさ<br />
+です．<br />
+注意しなくてはならないことは，ガウスノイズの大きさは，赤い線の高さのみなのです．<br />
+それ以外のギザギザは計算上のノイズ，ノイズのノイズ，なのです．</p>
+<p>まだ，この波形はノイズに比べて，シグナルが大きいので，あまりこの，ノイズのノイズ，は気になりません．<br />
+しかし，もっとシグナルが小さくなった場合，シグナルがこのノイズのノイズに埋もれてしまう恐れがあります．</p>
+<p>下の図をご覧ください．</p>
+<p><img src="FFT-17.jpg" width="323" height="213" /></p>
+<p>これは左記の条件から，<br />
+　ガウスノイズの標準偏差：2.0→5.0<br />
+にノイズ成分を増やしたものです．<br />
+１００Hzはまだ認識できますが，２００Hzはもう埋もれてしまっています．<br />
+往々にして，実験ではこのようなことは多いのです．</p>
+<p>この，ノイズのノイズ，を減少させるのが加算平均です．<br />
+ここで，シグナルと，ノイズの違いを考えましょう．<br />
+ランダムなノイズの場合，ノイズの形は刻々と変化します．<br />
+しかし，シグナルは定常的に発生しています．<br />
+つまり，ノイズの形は常に同じではないのです．<br />
+ですので，ノイズを加算平均していけば，ノイズのノイズ成分はどんどん減少していきます．<br />
+その減少具合は，</p>
+<p><img src="FFT-13.gif" width="50" height="66" /></p>
+<p>で減少します．<br />
+  N，は加算平均の回数です．<br />
+</p>
+<p><span class="style10"><a href="FFT-07.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="FFT-09.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span><br />
+</p>
+</body>
+</html>

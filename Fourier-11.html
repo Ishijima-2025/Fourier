@@ -1,0 +1,124 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Fourier</title>
+<link href="250219.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+</head>
+
+	
+
+
+
+
+<title>Laplace</title>
+</head>
+
+<body>
+<p class="Red-Large-Bold">フーリエ級数展開-11</p>
+<p>&nbsp;</p>
+<p><span class="Blue-Bold">フーリエ級数展開</span>では，<span class="Red-Large-Bold">複素数表示</span>，の方が計算が楽になります．</p>
+<p>そこで，<span class="Red-Bold">三角関数表示</span>と<span class="Red-Bold">複素数表示</span>との関係を見ていきましょう．</p>
+<p>&nbsp;</p>
+<p>ここでは，フーリエ級数展開は，こちらに示してある，<a href="Fourier-03.html">二つの方法から</a>，以下の式を用います．</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   f(x) = \color{red}{a_0} + \sum_{n=1}^{ \infty} \left( a_n \ cos \frac{2 \pi n x}{T} + b_n \ sin \frac{2 \pi n x}{T}\right) \)</span></p>
+<p>各定数は，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_0 = \color{red}{\frac{1}{T}} \int_0^T f(x) \ dx \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_n = \frac{2}{T} \int_0^T f(x) \ cos \frac{2 \pi n x}{T} \ dx \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   b_n = \frac{2}{T} \int_0^T f(x) \ sin \frac{2 \pi n x}{T} \ dx \)</span></p>
+<p>となります．積分範囲を，<span class="Blue-Bold">ーL～L</span>，に変換して，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    f(x) = a_0 + \sum_{n=1}^{ \infty} \left( a_n \ cos \ n \frac{ \pi}{L}x + b_n \ sin \  n \frac{ \pi}{L}x  \right) \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_0 = \frac{1}{2L} \int_{- L}^{ L} f(x)  \   dx \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_n  
+=  \frac{1}{L} \int_{ - L}^{ L} f(t) \ cos \ \left( n\frac{ \pi}{L}x \right) \  dx \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   b_n  
+=  \frac{1}{L} \int_{ - L}^{ L} f(x) \ sin \ \left( n\frac{ \pi}{L}x \right) \  dx \)</span></p>
+<p>となります，</p>
+<p>&nbsp;</p>
+<p><span class="Blue-Bold">オイラーの公式</span>から，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   e^{ i \theta}   
+=  cos \ \theta + i \ sin \ \theta \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   e^{ -i \theta}   
+=  cos \ (-\theta) + i \ sin \ (-\theta) =   cos \ \theta - i \ sin \ \theta \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   cos \ \theta = \frac{ e^{i \theta} + e^{i \theta}}{2} \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   sin \ \theta = \frac{ e^{i \theta} - e^{i \theta}}{2i} \)</span></p>
+<p>となるので，フーリエ級数展開の三角関数を複素数表示にすると，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle cos \ \left( n\frac{ \pi}{L}x \right) =     \displaystyle  \frac{ e^{i \frac{ n \pi}{L}x } + e^{-i \frac{ n\pi}{L}x }}{2} \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle sin \ \left( n\frac{ \pi}{L}x \right) =     \displaystyle  \frac{ e^{i \frac{ n \pi}{L}x } - e^{-i \frac{ n\pi}{L}x }}{2i} \)</span></p>
+<p>となりますので，各係数，a<sub>n</sub>, b<sub>n</sub>, を複素数表示にすると，<span class="Red-Bold">a<sub>n</sub></span>は，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_n  
+=  \frac{1}{L} \int_{ - L}^{ L} f(t) \ cos \ \left( n\frac{ \pi}{L}x \right) \  dx =   \frac{1}{L} \int_{ - L}^{ L} f(t) \ \displaystyle  \frac{ e^{i \frac{ n \pi}{L}x } + e^{-i \frac{ n\pi}{L}x }}{2} \  dx \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle =   \frac{1}{2L} \int_{ - L}^{ L} f(t) \ \displaystyle  e^{i \frac{ n \pi}{L}x } \  dx + \frac{1}{2L} \int_{ - L}^{ L} f(t) \ \displaystyle  e^{- i \frac{ n \pi}{L}x } \  dx\)</span></p>
+<p>第二項を，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle C_n \equiv  \frac{1}{2L} \int_{ - L}^{ L} f(t) \ \displaystyle  e^{- i \frac{ n \pi}{L}x } \  dx\)</span></p>
+<p>と置くと，第一項は，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   \frac{1}{2L} \int_{ - L}^{ L} f(t) \ \displaystyle  e^{ i \frac{ n \pi}{L}x } \  dx =   \frac{1}{2L} \int_{ - L}^{ L} f(t) \ \displaystyle  e^{ -i \frac{ (-n) \pi}{L}x } \  dx = C_{-n} \)</span></p>
+<p>となるので，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   a_n  
+=  C_{-n} + C_n \)</span></p>
+<p>と記すことができます．<span class="Red-Bold">b<sub>n</sub></span>も同様に，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   b_n  
+=  \frac{1}{L} \int_{ - L}^{ L} f(t) \ sin \ \left( n\frac{ \pi}{L}x \right) \  dx =   \frac{1}{L} \int_{ - L}^{ L} f(t) \ \displaystyle  \frac{ e^{i \frac{ n \pi}{L}x } - e^{-i \frac{ n\pi}{L}x }}{2i} \  dx \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle =   \frac{1}{2iL} \int_{ - L}^{ L} f(t) \ \displaystyle  e^{i \frac{ n \pi}{L}x } \  dx - \frac{1}{2iL} \int_{ - L}^{ L} f(t) \ \displaystyle  e^{- i \frac{ n \pi}{L}x } \  dx\)</span></p>
+<p>第二項を，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle C_n \equiv  \frac{1}{2L} \int_{ - L}^{ L} f(t) \ \displaystyle  e^{- i \frac{ n \pi}{L}x } \  dx\)</span></p>
+<p>と置くと，第一項は，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   \frac{1}{2L} \int_{ - L}^{ L} f(t) \ \displaystyle  e^{ i \frac{ n \pi}{L}x } \  dx =   \frac{1}{2L} \int_{ - L}^{ L} f(t) \ \displaystyle  e^{ -i \frac{ (-n) \pi}{L}x } \  dx = C_{-n} \)</span></p>
+<p>となるので，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   b_n  
+  =  -i (C_{-n} - C_n) \)</span></p>
+<p>となります．もとのフーリエ級数に代入すると，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    f(x) = a_0 + \sum_{n=1}^{ \infty} \left( a_n \ cos \ n \frac{ \pi}{L}x + b_n \ sin \  n \frac{ \pi}{L}x  \right) \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle     = C_0 + \sum_{n=1}^{ \infty} \left\{ (  C_{-n} + C_n) \displaystyle  \frac{ e^{i \frac{ n \pi}{L}x } + e^{-i \frac{ n\pi}{L}x }}{2} -   \color{red}{i}(C_{-n} - C_n) \displaystyle  \frac{ e^{i \frac{ n \pi}{L}x } - e^{-i \frac{ n\pi}{L}x }}{2\color{red}{i}} \right\} \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle       = C_0 + \frac{1}{2} \sum_{n=1}^{ \infty} \left( \color{red}{C_{-n} \cdot  e^{i \frac{ n \pi}{L}x }} + C_{-n} \cdot  e^{-i \frac{ n \pi}{L}x } + C_{n} \cdot  e^{i \frac{ n \pi}{L}x } + \color{blue}{C_{n} \cdot  e^{-i \frac{ n \pi}{L}x} }\right. \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle       \hspace{85pt}  \left. \color{red}{-C_{-n} \cdot  e^{i \frac{ n \pi}{L}x }} + C_{-n} \cdot  e^{-i \frac{ n \pi}{L}x } + C_{n} \cdot  e^{i \frac{ n \pi}{L}x } \color{blue}{- C_{n} \cdot  e^{-i \frac{ n \pi}{L}x }}\right) \)</span></p>
+<p>と色がついたところがキャンセルされるので，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle       = C_0 + \frac{1}{2} \sum_{n=1}^{ \infty} \left( 2 C_{n} \cdot  e^{i \frac{ n \pi}{L}x } + 2 C_{-n} \cdot  e^{- \frac{ n \pi}{L}x } \right) \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle       = C_0 + \sum_{n=1}^{ \infty} \left(  C_{n} \cdot  e^{i \frac{ n \pi}{L}x } +  C_{-n} \cdot  e^{-i \frac{ n \pi}{L}x } \right) \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle       = C_0 + \sum_{n=1}^{ \infty}  C_{n} \cdot  e^{i \frac{ n \pi}{L}x } + \sum_{n=1}^{ \infty}  C_{-n} \cdot  e^{-i \frac{ n \pi}{L}x }\)</span></p>
+<p>第三項の極性を反転させると，<span class="Red-Bold">m = -n</span>，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle        \sum_{n=1}^{ \infty}  C_{-n} \cdot  e^{-i \frac{ n \pi}{L}x } =  \sum_{ m = -1}^{-\infty}  C_{m} \cdot  e^{i \frac{ m \pi}{L}x }<br />
+  \rightarrow 
+  \sum_{ m = -\infty}^{-1}  C_{m} \cdot  e^{i \frac{ m \pi}{L}x } \rightarrow 
+  \sum_{ n = -\infty}^{-1}  C_{n} \cdot  e^{i \frac{ n \pi}{L}x }\)</span></p>
+<p>となるので，一つにまとめられて，</p>
+<p>&nbsp;</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle       \color{red}{f(x) =  \sum_{n= - \infty}^{ \infty}  C_{n} \cdot  e^{i \frac{ n \pi}{L}x }} \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle \color{red}{C_n = \frac{1}{2L} \int_{ - L}^{ L} f(t) \ \displaystyle  e^{- i \frac{ n \pi}{L}x } \  dx } \)</span></p>
+<p>&nbsp; </p>
+<p>とまとめることができます．</p>
+<p>ここで，注意すべき点は，<br />
+  <span class="Red-Bold">　加算範囲が，三角関数の場合は，1～∞，だが，複素数表示では，-∞～∞，となっている<br />
+  　定数が，三角関数の場合には，a<sub>0</sub>, a<sub>n</sub>, b<sub>n</sub>，だが，複素数表示では，C<sub>n</sub>，は一つである</span><br />
+ことですね．</p>
+<p><span class="Blue-Bold">オイラーの公式</span>からもわかるように．指数は正弦波，余弦波，をまとめたものなので，複素数表示では，すっきりしているのでしょう．</p>
+<p>&nbsp;</p>
+<p>次からは，実際にいろいろな波形をフーリエ級数展開してみましょう</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="Fourier-10.html"><img src="L-arrow.png" alt="l" width="57" height="34" border="0" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="Fourier-12.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

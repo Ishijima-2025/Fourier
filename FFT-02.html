@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>無題ドキュメント</title>
+<style type="text/css">
+<!--
+.style1 {
+	color: #0000FF
+}
+.style2 {
+	font-size: large;
+	color: #FF0000;
+	font-weight: bold;
+}
+.style4 {color: #0000FF; font-size: large; }
+.style6 {color: #0000FF; font-size: large; font-weight: bold; }
+.style10 {color: #000000; }
+-->
+</style>
+</head>
+
+<body>
+<h1 class="style1">フーリエ変換？パワースペクトル？パワースペクトル密度？</h1>
+<p>スペクトル解析を見ていくと，上記のようにいろいろな単語が出てきます．<br />
+いったい何が違うのでしょう．．．</p>
+<p>さて，ここで大胆にも非常に単純に説明していきましょう．<br />
+数学的には正しくないかも知れませんが．．．ご勘弁を．．</p>
+<blockquote>
+  <p class="style2">フーリエ変換：波形の周波数成分を振幅として表したもの<br />
+    パワースペクトル：波形の周波数成分をエネルギーとして表したもの</p>
+</blockquote>
+<p>です．<br />
+つまり，フーリエ変換もパワースペクトルも横軸は一緒，周波数です．<br />
+縦軸が異なるのです．<br />
+縦軸の次元は，<br />
+  <span class="style2">　フーリエ変換：[m]<br />
+  　パワースペクトル：エネルギー：[m<sup>2</sup>/Hz]，もしくはその平方根</span><br />
+です．<br />
+あくまで変位の場合です，これが電圧になってもかまいません．</p>
+<p>もう一つ，<span class="style4">パワースペクトル密度</span>，はじゃあいったい何？と言うことですが，これは<span class="style4">パワースペクトル</span>とほぼ同じように使われているようですね．<br />
+密度ですから，<span class="style6">ある範囲内のパワー</span>，と言うことで，この，<span class="style6">ある範囲</span>，というのは周波数です．<br />
+つまり，ある周波数ごとのパワー，と言ったらよいでしょうか．<br />
+具体的は，<span class="style2">パワースペクトルのグラフの縦軸</span>，のことだと思います．</p>
+<p>ですので，<br />
+  <span class="style2">　ある波形における振幅の周波数成分を調べたければ，フーリエ変換<br />
+  　ある波形におけるパワーの周波数成分を調べたければ，パワースペクトル</span><br />
+と考えてよいでしょう．</p>
+<p>詳しく，もしくは厳密にはきちんとした教科書を読んでくださいね．</p>
+<p><span class="style10"><a href="FFT-01.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="FFT-03.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+</body>
+</html>

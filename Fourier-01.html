@@ -1,0 +1,161 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Fourier</title>
+<link href="250219.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+</head>
+
+	
+
+
+
+
+<title>Laplace</title>
+</head>
+
+<body>
+<p class="Red-Large-Bold">フーリエ級数展開</p>
+<p class="Red-Large-Bold">&nbsp;</p>
+<p>まずは，フーリエに入る前に基本的な性質からまとめていきます．</p>
+<p>&nbsp;</p>
+<p class="Red-Large-Bold">・偶関数・奇関数</p>
+<p>偶関数・奇関数がある場合，これらの積はどうなるかを考えていきたいと思います．</p>
+<p><span class="Blue-Bold">　奇関数</span>：<span class="X-Large-Bold-RED">\( \Large     \displaystyle   f(-x) = - f(x) \)</span></p>
+<p><span class="Blue-Bold">　偶関数</span>：<span class="X-Large-Bold-RED">\( \Large     \displaystyle   f(-x) =  f(x) \)</span></p>
+<p>となります．</p>
+<p>　<span class="Red">・奇関数×奇関数</span></p>
+<p>2つの奇関数，f(x), g(x),　を考え，その積を，h(x)，とします．</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   h(x) = f(x) \cdot  g(x) \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   h(-x) = f(-x) \cdot  g(-x) = \left\{ -f(x) \right\} \left\{ -g(x) \right\} =  f(x) \cdot  g(x) \)</span> </p>
+<p>となり，<span class="Blue-Bold">偶関数</span>となります．</p>
+<p>　<span class="Blue-Bold">奇関数×奇関数＝</span><span class="Blue-Large-Bold">偶</span><span class="Blue-Bold">関数</span></p>
+<p>&nbsp;</p>
+<p>　<span class="Red">・奇関数×偶関数</span></p>
+<p>奇関数，f(x)，偶関数 g(x),　を考え，その積を，h(x)，とします．</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   h(x) = f(x) \cdot  g(x) \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   h(-x) = f(-x) \cdot  g(-x) = \left\{ -f(x) \right\} g(x)  =  -f(x) \cdot  g(x) \)</span></p>
+<p>となり，<span class="Blue-Bold">奇関数</span>となります．</p>
+<p>　<span class="Blue-Bold">奇関数×偶関数＝</span><span class="Blue-Large-Bold">奇</span><span class="Blue-Bold">関数</span></p>
+<p>&nbsp;</p>
+<p>　<span class="Red">・偶関数×偶関数</span></p>
+<p>2つの偶関数，f(x), g(x),　を考え，　を考え，その積を，h(x)，とします．</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   h(x) = f(x) \cdot  g(x) \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   h(-x) = f(-x) \cdot  g(-x) = f(x) \cdot  g(x) \)</span></p>
+<p>となり，<span class="Blue-Bold">偶関数</span>となります．</p>
+<p>　<span class="Blue-Bold">偶関数×偶関数＝</span><span class="Blue-Large-Bold">偶</span><span class="Blue-Bold">関数</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="Red-Large-Bold">・三角関数と±１との関係</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   cos \ n \pi \)</span></p>
+<p>を考えます．ここで，ｎは整数です．すると，</p>
+<table width="200" border="1">
+  <tbody>
+    <tr>
+      <td>n</td>
+      <td>cos()</td>
+      <td>cos(nπ）</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>cos(0)</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>cos(π）</td>
+      <td>-1</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>cos（2π）</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>cos（3π）</td>
+      <td>-1</td>
+    </tr>
+  </tbody>
+</table>
+<p>と１，－1と繰り返すので，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   cos \ n \pi = (-1)^n \)</span></p>
+<p>と書き換えることができます．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="Red-Large-Bold">・三角関数の一周期の積分</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   \int_0^{T} cos \ \frac{2 \pi nx}{T}  \ dx \)</span></p>
+<p>を考えます（ｎは整数）．</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   \int_0^{T} cos \ \frac{2 \pi mx}{T}  \ dx = \left[ \frac{T}{2 \pi n} sin  \ \frac{2 \pi nx}{T} \right]_0^T <br />
+  = 
+\frac{T}{2 \pi n} \left[ sin (2 \pi n) - sin (0) \right]  = 0 \)</span></p>
+<p>となります．また，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   \int_0^{T} sin \ \frac{2 \pi nx}{T}  \ dx \)</span></p>
+<p>は，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   \int_0^{T} sin \ \frac{2 \pi mx}{T}  \ dx = \left[ -\frac{T}{2 \pi n} cos  \ \frac{2 \pi nx}{T} \right]_0^T <br />
+= 
+-\frac{T}{2 \pi n} \left[ cos (2 \pi n) - cos (0) \right] = \frac{T}{2 \pi n} (1-1) = 0 \)</span></p>
+<p>といずれの場合にも<span class="Red-Large-Bold">０</span>となります．</p>
+<p>&nbsp;</p>
+<p class="Red-Large-Bold">・同じ周期を持つ関数の積</p>
+<p>f(x), g(x), を同じ周期を持つ関数として，その周期を，<span class="Blue-Large-Bold">T</span>，とします．すると，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   f(x) = f(x+T) \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   g(x) = g(x+T) \)</span></p>
+<p>が成り立ちます．その積を，h(x)，とすると，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   h(x) = f(x) \cdot g(x) \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   h(x+T) = f(x+T) \cdot g(x+T) = f(x) \cdot g(x) = h(x) \)</span></p>
+<p>となり，同じ周期<span class="Blue-Large-Bold">T</span>を持つこととなります．</p>
+<p>&nbsp;</p>
+<p>しかし，<span class="Blue-Bold">最小周期</span>，が異なることもあります．たとえば，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle f(x) \cdot g(x) = sin(x) \cdot sin(x) \)</span></p>
+<p>の場合，周期は，<span class="Blue-Bold">2π</span>，となります．</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle  sin(x) \cdot sin(x) = \left( \frac{ e^{ix} - e^{-ix}}{2i} \right)^2 \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle  = - \frac{1}{4} \left( e^{ix} \cdot e^{ix} - e^{ix} \cdot e^{-ix} - e^{-ix} \cdot e^{ix} + e^{-ix} \cdot e^{-ix}\right) \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle  = - \frac{1}{4} \left( e^{2ix} +  e^{-2ix} - 1 -1 \right) \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle  =  \frac{1}{4} \left\{ 2- (e^{2ix} +  e^{-2ix}) \right\} \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle  =  \frac{1}{4} \left\{ 2- 2 \ cos (2x) \right\} \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle  =  \frac{1-cos (2x)}{2}  \)</span></p>
+<p>となり，周期は<span class="Blue-Bold">π</span>，で半分となります．しかし，<span class="Blue-Bold">2π</span>で周期を持つことに変わりはありません．</p>
+<p>&nbsp;</p>
+<p class="Red-Large-Bold">・周期関数を周期の範囲で積分した場合，積分範囲をシフトしても結果が変わらない</p>
+<p>周期<span class="Blue-Bold">T</span>である関数，<span class="Blue-Bold">f(x)</span>，を考えます．<span class="Blue-Bold">T</span>の周期の幅で積分する場合，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   \int_a^{a+T} f(x) \ dx = \int_0^T f(x) \ dx \)</span></p>
+<p>であることを証明すればいいのです．． 変数変換して， </p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle u = x - a \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle du = dx \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle a \sim x \sim a + T \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle 0 \sim u \sim  T \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle   \int_a^{a+T} f(x) \ dx = \int_0^T f(u) \ du = \int_0^T f(x) \ dx \)</span></p>
+<p>となり，始点aによらず一定となることがわかります．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>次に，フーリエ級数展開に重要な，<span class="Red-Large">三角関数の積の積分と直交性について</span>，を検証していきます．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="Red-Bold">&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="Fourier-00.html"><img src="L-arrow.png" alt="l" width="57" height="34" border="0" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="Fourier-02.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

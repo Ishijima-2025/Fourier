@@ -1,0 +1,116 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Fourier</title>
+<link href="250219.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+</head>
+
+	
+
+
+
+
+<title>Laplace</title>
+</head>
+
+<body>
+<p class="Red-Large-Bold">フーリエ級数展開-12</p>
+<p>&nbsp;</p>
+<p><a href="Fourier-06.html">ここ</a>で，三角関数を用いて解いた<span class="Red-Bold">矩形波</span>を複素数表示で解いてみましょう．</p>
+<p>&nbsp;</p>
+<p class="Red-Large-Bold">・矩形波</p>
+<p>矩形波，</p>
+<p>\( \Large \left\{
+  \begin{array}{c} \hspace{10pt} -1 \hspace{20pt} ( \pi \leq  x &lt; 0) \\  \hspace{20pt} 1  \hspace{20pt} (0 \leq x &lt; \pi) \end{array} \right. \)</p>
+<p>の場合を考えます．</p>
+<p>フーリエ級数展開は， </p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle       f(x) =  \sum_{n= - \infty}^{ \infty}  C_{n} \cdot  e^{i \frac{ n \pi}{L}x } \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle C_n = \frac{1}{2L} \int_{ - L}^{ L} f(x) \ \displaystyle  e^{- i \frac{ n \pi}{L}x } \  dx  \)</span></p>
+<p>となり，積分範囲から，<span class="Blue-Bold">L＝π</span>，となるので，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle       f(x) =  \sum_{n= - \infty}^{ \infty}  C_{n} \cdot  e^{i n x } \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle C_n = \frac{1}{2 \pi } \int_{ - \pi}^{ \pi} f(x) \ \displaystyle  e^{- i  n x} \  dx  \)</span></p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p><span class="Red-Bold">n=0</span>，の場合は，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle C_0 = \frac{1}{2 \pi } \int_{ - \pi}^{ \pi} f(x)  \  dx  <br />
+= \frac{1}{2 \pi } \left\{ \int_{ - \pi}^{ 0} (-1)  \  dx + \int_{0}^{ \pi} 1  \  dx \right\} \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle 
+= \frac{1}{2 \pi } \left\{ -\left[ x \right]_{- \pi}^0 + \left[ x \right]_0^{ \pi} \right\} <br />
+= 
+\frac{1}{2 \pi } ( - \pi + \pi) = 0 \)</span></p>
+<p>&nbsp;</p>
+<p><span class="Red-Bold">n≠0</span>，の場合は，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle C_n = \frac{1}{2 \pi } \int_{ - \pi}^{ \pi} f(x)  \cdot  e^{-i n x }\  dx <br />
+  = \frac{1}{2 \pi } \left\{ \int_{ - \pi}^{ 0} (-1)  \cdot  e^{-i n x } \  dx + \int_{0}^{ \pi}   1  \cdot e^{-i n x }\  dx \right\} \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle 
+  = \frac{1}{2 \pi } \left\{ \left[ \frac{-1}{-in} \cdot  e^{-i n x } \right]_{- \pi}^0 + \left[ \frac{1}{-in} \cdot  e^{-i n x } \right]_0^{ \pi} \right\}  \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle 
+= \frac{1}{2 \pi } \left\{  \frac{1}{in} (1 -   e^{i n \pi} ) - \frac{1}{in} (   e^{-i n \pi} - 1 )\right\}  \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle 
+= \frac{1}{2 \pi in } \left\{  2-    e^{i n \pi} -   e^{-i n \pi} \right\}  \)</span></p>
+<p>となります，ここで，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle 
+e^{i n \pi} = cos ( n \pi) + i \ sin (n \pi)   = cos ( n \pi) = (-1)^n \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle 
+e^{-i n \pi} = cos ( n \pi) - i \ sin (n \pi)   = cos ( n \pi) = (-1)^n \)</span></p>
+<p>となりますので，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle 
+C_n = \frac{1}{2 \pi in } \left\{  2-    e^{i n \pi} -   e^{-i n \pi} \right\}  =  \frac{1}{ \pi in } \left\{ 1-(-1)^n \right\}\)</span></p>
+<p>\( \Large = \left\{
+\begin{array}{c} \hspace{10pt} \frac{2}{ \pi i n} \hspace{20pt} ( n = odd ) \\  \hspace{20pt} 0  \hspace{20pt} (n = even) \end{array} \right. \)</p>
+<p>となります．</p>
+<p>Σを分割して，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle       f(x) =  \sum_{n= - \infty}^{ \infty}  C_{n} \cdot  e^{i n x }　=  C_0 + \sum_{ n=-\infty}^{-1}  C_{n} \cdot  e^{i n x }  + \sum_{n= 1}^{ \infty}  C_{n} \cdot  e^{i n x } \)</span></p>
+<p>として，m = -n，と変換して，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle =  C_0 + \sum_{ m=\infty}^{1}  C_{-m} \cdot  e^{-i m x }  + \sum_{n= 1}^{ \infty}  C_{n} \cdot  e^{i n x } \)</span></p>
+<p>Σの範囲の順番は逆でもいいので，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle =  C_0 + \sum_{m=1}^{ \infty}  C_{-m} \cdot  e^{-i m x }  + \sum_{n= 1}^{ \infty}  C_{n} \cdot  e^{i n x } \)</span></p>
+<p>記号を書き換えて，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle =  C_0 + \sum_{n=1}^{ \infty}  C_{-n} \cdot  e^{-i n x }  + \sum_{n= 1}^{ \infty}  C_{n} \cdot  e^{i n x } \)</span></p>
+<p>Σをまとめて，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle =  C_0 + \sum_{n=1}^{ \infty}  ( C_{-n} \cdot  e^{-i n x }  +   C_{n} \cdot  e^{i n x }) \)</span></p>
+<p>今回の計算では，<span class="Blue-Bold">nが偶数の場合は０，C<sub>0</sub>=0</span>，となるので，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle f(x) = \sum_{n=1, odd}^{ \infty}  ( C_{-n} \cdot  e^{-i n x }  +   C_{n} \cdot  e^{i n x }) \)</span></p>
+<p>となります．第一項，第二項はそれぞれ，オイラーの公式から，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    C_{n} \cdot  e^{i n x } =  \frac{2}{ \pi i n} \{ cos (nx) + i \ sin (nx) \} \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    C_{-n} \cdot  e^{-i n x } = -\frac{2}{ \pi i n} \{ cos (nx) - i \ sin (nx) \} \)</span></p>
+<p>となるので，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle    C_{n} \cdot  e^{i n x } +     C_{-n} \cdot  e^{-i n x } =  \frac{2}{ \pi i n} \left[ \{ cos (nx) + i \ sin (nx) \} - \{cos (nx) - i \ sin (nx) \} \right] \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle     =  \frac{4}{ \pi  n} \left[   \ sin (nx) \right] \)</span></p>
+<p>となりますので，</p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle f(x) = \sum_{n=1, odd}^{ \infty}  ( C_{-n} \cdot  e^{-i n x }  +   C_{n} \cdot  e^{i n x }) \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle= \sum_{n=1, odd}^{ \infty}    \frac{4}{ \pi} \left[   \frac{ sin (nx)}{n} \right] \)</span></p>
+<p><span class="X-Large-Bold-RED">\( \Large     \displaystyle=    \frac{4}{ \pi} \left( sin \ x + \frac{1}{3} sin \ 3x +  \frac{1}{5} sin \ 5x + ........... \right) \)</span></p>
+<p><img src="rect-overplot.jpg" width="694" height="401" alt=""/></p>
+<p>と，<a href="Fourier-06.html">三角関数の場合</a>，と同じ結果となります．</p>
+<p>　</p>
+<p>三角関数の場合と同様に，振幅，周期を変えてみるとどうなるでしょう？</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="Fourier-11.html"><img src="L-arrow.png" alt="l" width="57" height="34" border="0" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="Fourier-13.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

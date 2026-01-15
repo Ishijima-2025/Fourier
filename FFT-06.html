@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>無題ドキュメント</title>
+<style type="text/css">
+<!--
+.style1 {color: #0000FF}
+.style2 {
+	font-size: large;
+	color: #FF0000;
+	font-weight: bold;
+}
+.style3 {
+	font-size: large;
+	color: #0000FF;
+}
+.style5 {font-size: large; color: #FF0000; }
+.style10 {color: #000000; }
+-->
+</style>
+</head>
+
+<body>
+<h1 class="style1">窓関数</h1>
+<p>さて，下のフーリエ変換の図をご覧ください．</p>
+<p><img src="FFT-09.jpg" width="715" height="672" /> </p>
+<p>下のフーリエ変換のグラフを見ると，明らかに，左の方がシャープですね．<br />
+何が違うのでしょう？<br />
+それは，赤枠で囲んだ，<br />
+　<span class="style2">サイン波の周波数</span><br />
+が違うのです．<br />
+それ以外の，サンプリング周波数，サンプル数，振幅，は全く一緒です．<br />
+この二つ，なんで周波数だけの違いで，これほど差があるのでしょう？</p>
+<p>それは，<span class="style3">青矢印</span>と<span class="style5">赤矢印</span>を注意してください．<br />
+もし，この実波形を2枚横に並べてみると，</p>
+<p><img src="FFT-10.jpg" width="454" height="166" /><br />
+  左の図では，<span class="style3">青矢印</span>と<span class="style5">赤矢印</span>が連続してつながる</p>
+<p><img src="FFT-11.jpg" width="454" height="166" /><br />
+　
+  右の図では，<span class="style3">青矢印</span>と<span class="style5">赤矢印</span>は連続してつながらない  <br />
+  となります．<br />
+この不連続さが，データをゆがめてしまっているのです．<br />
+元々，フーリエ変換はある波形を与えたとしても，その左右に同じものが連続し存在する，として計算しています．<br />
+ですので，この不連続さがあると，不連続さも信号として計算してしまうのです．<br />
+そうそう，得られた波形にぴったり来る周波数を見ることは実験状マレです．</p>
+<p>では，どうすればよいのでしょう？<br />
+そこで登場するのが，<br />
+　窓関数<br />
+です．<br />
+窓関数とは，波形を無理矢理つなげるようなものです．<br />
+両端を，０，にしてしまえばいいのです．<br />
+それを示したのが，下の図です．</p>
+<p><img src="FFT-12.jpg" width="622" height="152" /></p>
+<p>こうすれば，どんな関数でも，両端は値が０，傾きも０なので，並べても連続的につながります．<br />
+ちなみに，窓関数はいろいろありますが，代表的な窓関数，ハニング関数，を示しました．<br />
+このカーブはコサイン関数で，</p>
+<p><img src="FFT-12.gif" width="384" height="40" /></p>
+<p>となります．</p>
+<p>その効果を実際の波形で見てみましょう．</p>
+<p><img src="FFT-13.jpg" width="736" height="689" /></p>
+<p>左が窓関数未処理，右が窓関数処理後，です．<br />
+ピークの鋭さはあまりよくありませんが，すそ野の切れがいいことがわかりますね．</p>
+<p>ちなみに，プログラムを見ると，窓関数処理後のスペクトル波形に2倍しているのが見えますね．<br />
+  これは，窓関数で処理したため，実際の振幅が小さくなってしまった影響を回復させるためです．<br />
+ハニング関数を見ればわかるように，ちょうど1/2の面積になっていることがわかりますね．<br />
+この値は窓関数によって変わります．</p>
+<p>では，パワースペクトルの場合の補正を考えましょう．</p>
+<p><span class="style10"><a href="FFT-05.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="FFT-06-2.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>
