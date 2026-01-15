@@ -1,0 +1,113 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>power_spectrum</title>
+<link href="090413.css" rel="stylesheet" type="text/css" />
+<link href="160324.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+
+.style7 {color: #000000; }
+
+.style10 {color: #000000; }
+
+.style1 {color: #0000FF}
+
+</style>
+</head>
+
+<body>
+<p><span class="X-Large-Bold-RED">パワースペクトルの実際の作業内容</span><span class="X-Large-Bold-RED">-01</span></p>
+<p>今回は，パワースペクトルの実際の作業について，説明したいと思います．</p>
+<p>実際に，&quot;Power Spectrum&quot;，で検索するといろいろな画像がヒットしますが，今回の手法はもしかしたらメインではない手法かもしれません．</p>
+<p>実際に私が作った画像は，</p>
+<p><img src="Powerspectrum.jpg" width="600" height="421" alt=""/></p>
+<p>というもので，これは<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1224937/" target="_blank">1996年の論文</a>（もう30年以上も前！）です．</p>
+<p>この特徴は，<br />
+  <span class="Large-Bold-Red">　両軸とも，対数表示  <br />
+	　縦軸が，”パワースペクトル密度(nm<sup>2</sup>/Hz)<br />
+  　グラフのゆらぎが100Hzで変化している</span><br />
+というものです．</p>
+<p>これをそれぞれ考えていきましょう．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・両対数プロット</p>
+<p>我々の生活の中では，リニアな現象もありますが，べき乗則に則った現象も多く見られます．</p>
+<p>べき乗則は，検索して調べていただくことにして，このような現象は対数表示したほうがわかりやすい場合が多いです．</p>
+<p class="Blue">・周波数（横軸）</p>
+<p>もちろん，交流電圧のように50, 60 Hzの違いも大事ですが，広い周波数帯を我々は感知できそうです．</p>
+<p>聴覚で言うと，ネットで調べると，20 HZから，20,000 Hz程度まで感じることができるとのことです（私はもう高周波は無理ですが．．．）</p>
+<p>音楽でも，ラ(A3)が440Hz，1オクターブ上のラ(AA4)が880 Hzと倍々になっています．</p>
+<p class="Blue">・パワー（縦軸）</p>
+<p>これも，よくデシベルという単語をよく耳にしますが，これも対数表示ですね，マグニチュード，もそうです．</p>
+<p>ですので，両軸とも対数表示にした方が広い領域を一度に網羅することが可能となります．</p>
+<p>&nbsp;</p>
+<p class="Blue-Bold">・ゆらぎ</p>
+<p>ノイズ，雑音，と呼ばれるものにもいろいろな形態があり，<br />
+  <span class="Blue-Bold">　ピンクノイズ（1/fに比例，昔は1/fノイズと言われ，心地よいゆらぎと言われていましたね，家にある扇風機も1/fゆらぎ機能搭載です）<br />
+　ブラウニアンノイズ（1/f<sup>2</sup>に比例しているということです）<br />
+　ローレンツ型ノイズ(1/(1+(f/f<sub>c</sub>)<sup>2</sup>に比例)</span><br />
+などあります．これを単純にエクセルでグラフ化（横軸周波数，縦軸はたぶんパワー密度）してみると</p>
+<p><img src="power_spectrum-01.png" width="769" height="432" alt=""/></p>
+<p>となり，どれも右肩下がりのカーブとなり，これら3つを区別することはほとんど不可能に近いですね．</p>
+<p>しかし，同じデータを両対数プロットで示すと，</p>
+<p><img src="power_spectrum-02.png" width="766" height="430" alt=""/></p>
+<p>と明らかに傾き，傾くポイントが異なることがわかります．これは，</p>
+<p class="Blue-Bold">・ピンクノイズ，1/f</p>
+<p>\(\Large \displaystyle   y = C_0 \frac{1}{f} \)</p>
+<p>とした場合，対数をとると，</p>
+<p>\(\Large \displaystyle   log(y) = log [C_0 \frac{1}{f}] \)</p>
+<p>\(\Large \displaystyle   \hspace{36pt}  = log (C_0) + log \left(\frac{1}{f} \right) \)</p>
+<p>\(\Large \displaystyle   \hspace{36pt}  = log (C_0) - log (f) \)</p>
+<p>と<span class="Red-Bold">傾きが-1</span>の直線となります．同様に，</p>
+<p>&nbsp;</p>
+<p class="Blue-Bold">・ブラウニアンノイズ，1/f<sup>2</sup></p>
+<p>\(\Large \displaystyle   y = C_0 \frac{1}{f^2} \)</p>
+<p>とした場合，対数をとると，</p>
+<p>\(\Large \displaystyle   log(y) = log [C_0 \frac{1}{f^2}] \)</p>
+<p>\(\Large \displaystyle   \hspace{36pt}  = log (C_0) + log \left(\frac{1}{f^2} \right) \)</p>
+<p>\(\Large \displaystyle   \hspace{36pt}  = log (C_0) - 2 \ log (f) \)</p>
+<p>と<span class="Red-Bold">傾きが-2</span>の直線となります．</p>
+<p>&nbsp;</p>
+<p><span class="Blue-Bold">・ローレンツ型ノイズ，1/(1+(f/f<sub>c</sub>)<sup>2</sup></span></p>
+<p>これは，ちょっとややこしいですが，</p>
+<p>\(\Large \displaystyle   \Phi =  \frac{ \Phi_0}{1+ \left( \frac{f}{f_c} \right) ^2} \)</p>
+<p>でローレンツ型ゆらぎは表記できますが，二つの場合に分けて</p>
+<p>・<span class="Blue">f << f<sub>c</sub></span>，の場合，分母が１となりますので，</p>
+<p>\(\Large \displaystyle   \Phi \fallingdotseq   \Phi_0 \)</p>
+<p>と一定の値となります．</p>
+<p>・<span class="Blue">f &gt;&gt; f<sub>c</sub></span>，の場合，分母の１が無視できるので，</p>
+<p>\(\Large \displaystyle   \Phi \fallingdotseq  \frac{ \Phi_0}{ \left( \frac{f}{f_c}\right) ^2} = \frac{ \Phi_0 \ f_c^2}{ f ^2}\)</p>
+<p>となり，<br />
+  <span class="Blue-Bold">　低周波域では一定<br />
+  　高周波域では2乗に反比例して減少（両対数の場合，-2の傾きの直線）</span><br />
+となるわけです．</p>
+<p>&nbsp;</p>
+<p>このように，<span class="Red-Bold">両対数プロット</span>を採用すると，</p>
+<p class="Red-Bold">　広域のデータを一覧できる</p>
+<p class="Red-Bold">　ゆらぎの種類を区別しやすくなる</p>
+<p>というメリットがあります．</p>
+<p>&nbsp;</p>
+<p>と，両対数プロットはいいことづくめ，のように思えますが，いろいろと問題もあるのです．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="power_spectrum-02.html"><img src="R-arrow.png" alt="r" width="57" height="34" border="0" /></a></p>
+</body>
+</html>

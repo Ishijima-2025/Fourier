@@ -1,0 +1,100 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>power_spectrum</title>
+<link href="090413.css" rel="stylesheet" type="text/css" />
+<link href="160324.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+
+.style7 {color: #000000; }
+
+.style10 {color: #000000; }
+
+.style1 {color: #0000FF}
+
+</style>
+</head>
+
+<body>
+<p><span class="X-Large-Bold-RED">パワースペクトルの実際の作業内容-07</span></p>
+<p><span class="Large-Bold-Red">　単に間引くだけでいいのか？</span></p>
+<p>&nbsp;</p>
+<p>もう一度おさらいすると，<a href="FFT-05.html">ここ</a>，に示したように，下図にあるように，</p>
+<p class="Blue-Bold">　実際の波形の時間 (s)　　：　S<sub>time</sub><br />
+  　サンプル周波数 (1/s)　　：　S<sub>freq</sub><br />
+  　サンプル時間分解能 (s)　：　dt<br />
+  　実際の波形の数　　　　　：　n</p>
+<p>とすると，</p>
+<p>\(\Large \displaystyle   S_{time}  = n \times dt = \frac{n}{S_{freq}} \)</p>
+<p>の関係になります．これにフーリエ変換すると，</p>
+<p class="Blue-Bold">　フーリエ変換の横軸の最小単位 (Hz)　　　：　df<br />
+  　フーリエ変換の横軸の数　　　　　　　　：　f<sub>number</sub><br />
+  　フーリエ変換の横軸のレンジ（最大値）　： 　f<sub>range</sub></p>
+<p>とすると，</p>
+<p>\(\Large \displaystyle   df  = \frac{S_{freq}}{n} =  \frac{1}{S_{time}}\)</p>
+<p>\(\Large \displaystyle   f_{number}  =  \frac{n}{2} \)</p>
+<p>\(\Large \displaystyle   f_{range}  =  \frac{S_{freq}}{2} \)</p>
+<p>となります．</p>
+<p>仮に，ひとつずつデータを間引くとすると，実際の波形の時間は変わらないので，</p>
+<p>\(\Large \displaystyle   S_{time\_D}  = S_{time}  = n_D \times dt_D = n \times dt = \frac{n_D}{S_{freq\_D}} = \frac{n}{S_{freq}}\)</p>
+<p>となります．間引いた結果のパラメータにはDの添え字をつけています．</p>
+<p>\(\Large \displaystyle   S_{time\_D}  = S_{time}   \)</p>
+<p>なので，一つずつ間引いているので波形のデータ数は半分になるので，</p>
+<p>\(\Large \displaystyle    n_D  = \frac{n}{2} \)</p>
+<p>\(\Large \displaystyle     n \times dt = n_D \times dt_D = \frac{n}{2} \times dt_D \)</p>
+<p>\(\Large \displaystyle      dt_D = 2 \ dt \)</p>
+<p>となり，サンプル時間分解能が2倍となるのです．また，</p>
+<p>\(\Large   \displaystyle      \frac{n}{S_{freq}} = \frac{n_D}{S_{freq\_D}} = \frac{n}{2} \frac{1}{S_{freq\_D}}\)</p>
+<p>\(\Large   \displaystyle      S_{freq\_D} = \frac{1}{2} S_{freq} \)</p>
+<p>とサンプル周波数は半分になります（サンプル時間分解能の逆数だからそうですね）．</p>
+<p>df，は，</p>
+<p>\(\Large \displaystyle   df  = \frac{S_{freq}}{n} =  \frac{1}{S_{time}}\)</p>
+<p>ですが，</p>
+<p>\(\Large \displaystyle   df_D  = \frac{S_{freq\_D}}{n_D} =  \frac{ \frac{1}{2} S_{freq}}{ \frac{1}{2} n} = \frac{S_{freq}}{n} = df \)</p>
+<p>と変わりません，これで，<span class="Red-Bold">データを間引くことにより，dfを変えることなくFFTの計算時間を少なくすることができる</span>のです．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・間引くとどうなるか？</p>
+<p>では，実際に間引いてみましょう．</p>
+<p>元データ<br>
+  <span class="Blue">　一様ホワイトノイズ<br>
+　実際の波形の時間 (s)　：　S<sub>time</sub> = 0.064 s<br>
+　サンプル周波数 (1/s)　：　S<sub>freq</sub> = 2,000 Hz<br>
+　サンプル時間分解能 (s)　：　dt = 0.0005 ms<br>
+　実際の波形の数　：　n = 128</span></p>
+<p>で半分にデータ数を間引いていきます（一つずつ間引く）</p>
+<p><img src="power_spectrum-24.png" width="605" height="442" alt=""/></p>
+<p>上が，元波形，下が間引いた波形です．</p>
+<p>\(\Large \displaystyle   S_{time\_D}  = S_{time}   \)</p>
+<p>と<span class="Red">変わらない</span>ことがわかります．</p>
+<p>重要な点は，</p>
+<p>　<span class="Large-Bold-Red">分散値は間引いても変わらない</span></p>
+<p>という点です．</p>
+<p>図の右の数字の計算結果のように，<br>
+　元波形　　　　：　0.33<br>
+　間引いた波形　：　0.34<br>
+と同じであることがわかります．</p>
+<p>これが<span class="Blue-Bold">結構曲者</span>なのです．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="power_spectrum-06.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="power_spectrum-08.html"><img src="R-arrow.png" alt="r" width="57" height="34" border="0" /></a></p>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>power_spectrum</title>
+<link href="090413.css" rel="stylesheet" type="text/css" />
+<link href="160324.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+
+.style7 {color: #000000; }
+
+.style10 {color: #000000; }
+
+.style1 {color: #0000FF}
+
+</style>
+</head>
+
+<body>
+<p><span class="X-Large-Bold-RED">パワースペクトルの実際の作業内容-03</span></p>
+<p><span class="Large-Bold-Red">　縦軸が，”パワースペクトル密度(nm<sup>2</sup>/Hz)</span></p>
+<p>という点を確かめておきましょう．</p>
+<p>実際に，<a href="power-01.html">ここ</a>，に記したように，</p>
+<p>\(\Large \displaystyle   &lt;x^2&gt;  = \int_{- \infty}^{\infty} \Phi (\omega) \ d \omega \)</p>
+<p>とパワースペクトルの全積分が分散値となります．したがって，横軸がHzならば，縦軸が<br />
+　<span class="Blue-Bold">分散÷Hz=nm<sup>2</sup>/Hz</span><br />
+となるわけです．</p>
+<p>では，実際にそうなっているかパワースペクトルを作ってみて確認してみましょう．</p>
+<p>まずは，おさらいから，実際の波形とフーリエ変換後の波形との関係を見ていきましょう．</p>
+<p><a href="FFT-05.html">ここ</a>，に示したように，下図にあるように，</p>
+	<p class="Blue-Bold">　実際の波形の時間 (s)　　：　S<sub>time</sub><br />
+ 　サンプル周波数 (1/s)　　：　S<sub>freq</sub><br />
+ 　サンプル時間分解能 (s)　：　dt<br />
+ 　実際の波形の数　　　　　：　n</p>
+	<p>とすると，</p>
+	<p>\(\Large \displaystyle   S_{time}  = n \times dt = \frac{n}{S_{freq}} \)</p>
+<p>の関係になります．これにフーリエ変換すると，</p>
+<p class="Blue-Bold">　フーリエ変換の横軸の最小単位 (Hz)　　　：　df<br />
+　フーリエ変換の横軸の数　　　　　　　　：　f<sub>number</sub><br /> 
+　フーリエ変換の横軸のレンジ（最大値）　： 　f<sub>range</sub></p>
+<p>とすると，</p>
+<p>\(\Large \displaystyle   df  = \frac{S_{freq}}{n} =  \frac{1}{S_{time}}\)</p>
+<p>\(\Large \displaystyle   f_{number}  =  \frac{n}{2} \)</p>
+<p>\(\Large \displaystyle   f_{range}  =  \frac{S_{freq}}{2} \)</p>
+<p>となります．</p>
+<p><img src="power_spectrum-05.png" width="815" height="1257" alt=""/></p>
+<p>次ページから，実際にプログラムを作ってみましょう．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="power_spectrum-02.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="power_spectrum-04.html"><img src="R-arrow.png" alt="r" width="57" height="34" border="0" /></a></p>
+</body>
+</html>

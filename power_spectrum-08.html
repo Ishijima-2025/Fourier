@@ -1,0 +1,89 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>power_spectrum</title>
+<link href="090413.css" rel="stylesheet" type="text/css" />
+<link href="160324.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+
+.style7 {color: #000000; }
+
+.style10 {color: #000000; }
+
+.style1 {color: #0000FF}
+
+</style>
+</head>
+
+<body>
+<p><span class="X-Large-Bold-RED">パワースペクトルの実際の作業内容-08</span></p>
+<p><span class="Large-Bold-Red">　間引いたらどうなる？</span></p>
+<p>&nbsp;</p>
+<p>前ページに述べましたように，</p>
+<p>　<span class="Large-Bold-Red">分散値は間引いても変わらない</span></p>
+<p>というのは，当然であって，分散の定義から，</p>
+<p>\(\Large \displaystyle   &lt;x^2&gt; = \sum_{i=1}^n   \frac{(x_i - &lt;x&gt;)^2}{n-1} \)</p>
+<p>からデータ数に依存しないパラメータです．</p>
+<p>間引いたデータをフーリエ変換にかけると何が変わるかというと，</p>
+<p>前ページのように，仮に，ひとつずつデータを間引くとすると，</p>
+<p>\(\Large   \displaystyle      S_{freq\_D} = \frac{1}{2} S_{freq} \)</p>
+<p>となるので，フーリエ変換による周波数の範囲が，</p>
+<p>\(\Large \displaystyle   f_{range}  =  \frac{S_{freq}}{2} \)</p>
+<p>\(\Large \displaystyle   f_{range\_D}  =  \frac{S_{freq\_D}}{2}   =  \frac{S_{freq}}{4}\)</p>
+<p>\(\Large \displaystyle   S_{freq\_D} = \frac{1}{2}   S_{freq} \)</p>
+<p>と半分になるのです．</p>
+<p>ここで，パワースペクトルのグラフからは，<a href="power-01.html">ここ</a>，に記したように，</p>
+<p>\(\Large \displaystyle   &lt;x^2&gt;  = \int_{- \infty}^{\infty} \Phi (\omega) \ d \omega \)</p>
+<p>となります．つまり，</p>
+<p>　<span class="Blue-Bold">周波数帯が半分になっても分散値は同じ　＝　パワー密度が倍になる</span></p>
+<p>という点です．図示すると，</p>
+<p><img src="power_spectrum-25.png" width="630" height="483" alt=""/></p>
+<p>つまり，</p>
+<p class="Large-Bold-Blue">　間引くと，高周波領域のノイズが低周波領域に乗っかり，低周波領域のパワー密度が増える</p>
+<p>ことになります．これ，”<span class="Red-Bold"><a href="https://ja.wikipedia.org/wiki/%E6%8A%98%E3%82%8A%E8%BF%94%E3%81%97%E9%9B%91%E9%9F%B3" target="_blank">エイリアシング</a></span>”，ですね．</p>
+<p>せっかくパワースペクトルを計算してノイズを計測しようとしても間引くと計算結果が変わる（増える）わけです．</p>
+<p>これでは困ります．上手のように長方形なら半分にすればいいものですが，実際にはホワイトノイズ以外も扱うのでそう簡単にはいきません．</p>
+<p>では，実際に間引いたあとのパワー密度を見てみると，</p>
+<p>元データ<br />
+  <span class="Blue">　一様ホワイトノイズ<br />
+    実際の波形の時間 (s)　：　S<sub>time</sub> = 1.028 s<br />
+    サンプル周波数 (1/s)　：　S<sub>freq</sub> = 2,000 kHz<br />
+    サンプル時間分解能 (s)　：　dt = 0.0005 ms<br />
+    実際の波形の数　：　n = 2048</span><br />
+  <span class="Blue">間引き方　：　1/2<br />
+加算平均　：　1000回</span></p>
+<p>&nbsp;</p>
+<p><img src="power_spectrum-27.png" width="600" height="391" alt=""/></p>
+<p>となります．赤が元波形，白が一つずつ間引いた波形．わかりやすいように，両軸ともリニアでプロットしています．</p>
+<p>やはり，間引くと，パワー密度が倍になっています．</p>
+<p>&nbsp;</p>
+<p>どうしたらいいのでしょう？解決策は，</p>
+<p class="Large-Bold-Red">　高周波領域のノイズをなくしてしまえばいい！</p>
+<p>です．</p>
+<p><img src="power_spectrum-26.png" width="740" height="496" alt=""/></p>
+<p>つまり，<span class="Red-Bold">上図のハッチの部分の高周波領域のノイズをあらかじめなくしておけば，間引いたとしても低周波領域に乗っかってくるノイズ成分がないので元のまま</span>となります．</p>
+<p>この役目を担ってくれるのが，<span class="Large-Bold-Red">”ローパスフィルタ”</span>，です．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="power_spectrum-07.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="power_spectrum-09.html"><img src="R-arrow.png" alt="r" width="57" height="34" border="0" /></a></p>
+</body>
+</html>

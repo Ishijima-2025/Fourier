@@ -1,0 +1,126 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>power_spectrum</title>
+<link href="090413.css" rel="stylesheet" type="text/css" />
+<link href="160324.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+
+.style7 {color: #000000; }
+
+.style10 {color: #000000; }
+
+.style1 {color: #0000FF}
+
+</style>
+</head>
+
+<body>
+<p><span class="X-Large-Bold-RED">パワースペクトルの実際の作業内容-05</span></p>
+<p><span class="Large-Bold-Red">　パワースペクトル</span></p>
+<p>&nbsp;</p>
+<p>Labviewにおいては以下のアイコンを利用します</p>
+<p><span class="Blue-Bold">オートパワースペクトル</span></p>
+<p><img src="power_spectrum-15.png" width="360" height="147" alt=""/></p>
+<p>なぜ，”オート”なのかは不明です．．</p>
+<p>面白いことに，ヘルプを見ると，</p>
+<p>------------------------------------------------------------</p>
+<p class="Blue">パワースペクトルは、単側パワースペクトルを返します。 <br />
+入力信号がボルト（V）の場合、パワースペクトルは電圧の二乗（Vrms<sup>2</sup>）の単位で表されます。</p>
+<p>------------------------------------------------------------</p>
+<p>パワースペクトルの縦軸の単位は，V<sup>2</sup>/Hz，だったはず．．．</p>
+<p>たぶん，想像ですが，離散的な確率分布となるために，<span class="Blue">dfを掛けたもの</span>になっているのではないかと想像できます．</p>
+<p>ただ，今後，異なるdfの波形を合成することもあり，以下に示すスペクトルはdfで割ったものとなります．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Blue">・一様ホワイトノイズ</p>
+<p>前ページで作成した実波形，<br />
+  <span class="Blue">　サンプル（サンプル数）：2048<br />
+　振幅　　　　　　　　　：1<br />
+　dt（このアイコン内での設定ではないですが）　：　0.5 ms</span><br />
+で生成した波形に対して，<br />
+<span class="Blue">　FFTサンプル数　：　2048</span><br />
+でパワースペクトルを計算すると，</p>
+<p><img src="power_spectrum-16.png" width="970" height="239" alt=""/></p>
+<p>となります．左右とも同じデータで，右図は両対数をとっています．</p>
+<p>両対数プロットではなんとか周波数によらない一定のパワーの様子が見て取れますが，かなりノイジーです（<span class="Blue">ノイズのノイズ？</span>）．</p>
+<p>この，<span class="Blue-Bold">ノイズのノイズ，は複数回加算平均をとることで減らすことができます</span>，パワースペクトルは位相情報を持たないので，加算しても本来のノイズ情報が失われないからです．</p>
+<p>1,000回加算平均をとると，</p>
+<p><img src="power_spectrum-17.png" width="969" height="241" alt=""/></p>
+<p>と，かなりクリアな，周波数によらない一定の値となる結果となります．</p>
+<p>この平均値は，0.000333 (V<sup>2</sup>/Hz)，と計算できますので，全積分（単側パワースペクトルなので，０～∞）をとると，</p>
+<p>\(\Large \displaystyle   &lt;パワー密度&gt; = 0.000333 \)</p>
+<p>\(\Large \displaystyle   df  = \frac{S_{freq}}{n} =  \frac{1}{S_{time}} = \frac{0.0005}{2048} = 0.9766\)</p>
+<p>\(\Large \displaystyle   f_{number}  =  \frac{n}{2} =\frac{2048}{2} = 1024\)</p>
+<p>となるので，</p>
+<p>\(\Large \displaystyle   &lt;x^2&gt;=&lt;パワー密度&gt;  \times df \times f_{number} = 0.000333 \times 0.9766 \times 1024 = 0.333 \)</p>
+<p>と<span class="Red-Bold">前ページの計算結果と一致</span>します．</p>
+<p>　</p>
+<p><span class="Large-Bold-Blue">・ガウスホワイトノイズ</span></p>
+<p><span class="Blue">　サンプル（サンプル数）：2048<br />
+　標準偏差　　　　　　　：1<br />
+　dt（このアイコン内での設定ではないですが）　：　0.5 ms</span><br />
+で生成した波形に対して，<br />
+<span class="Blue">　FFTサンプル数　：　2048</span><br />
+でパワースペクトルを計算すると</p>
+<p><img src="power_spectrum-18.png" width="973" height="251" alt=""/></p>
+<p>となります．左右とも同じデータで，右図は両対数をとっています．</p>
+<p>一様ホワイトノイズと同様に，両対数プロットではなんとか周波数によらない一定のパワーの様子が見て取れますが，かなりノイジーです（ノイズのノイズ？）．</p>
+<p>1,000回加算平均をとると，</p>
+<p><img src="power_spectrum-19.png" width="973" height="245" alt=""/></p>
+<p>この平均値は，0.001001 (V<sup>2</sup>/Hz)，と計算できますので，全積分（単側パワースペクトルなので，０～∞）をとると，</p>
+<p>\(\Large \displaystyle   &lt;パワー密度&gt; = 0.001001 \)</p>
+<p>\(\Large \displaystyle   df  = \frac{S_{freq}}{n} =  \frac{1}{S_{time}} = \frac{0.0005}{2048} = 0.9766\)</p>
+<p>\(\Large \displaystyle   f_{number}  =  \frac{n}{2} =\frac{2048}{2} = 1024\)</p>
+<p>となるので，</p>
+<p>\(\Large \displaystyle   &lt;x^2&gt;=&lt;パワー密度&gt;  \times df \times f_{number} = 0.001001 \times 0.9766 \times 1024 = 1.001 \)</p>
+<p>と設定した<span class="Red-Bold">標準偏差の二乗と一致</span>します．</p>
+<p>ガウスホワイトノイズなので，ブラウン運動様式なのかと最初思っていましたが，”ガウス分布に従う直近の記憶によらないゆらぎ”，なのでホワイトノイズ様になるのでしょう．</p>
+<p>（非マルコフ，というのだろうか？）</p>
+<p>&nbsp;</p>
+<p><span class="Large-Bold-Blue">・逆ｆノイズ波形</span></p>
+<p>1/ｆノイズ（ピンクノイズ）を生成するために，<br />
+  <span class="Blue">　サンプル（サンプル数） 　　　　　　　　　　　：2048<br />
+　ノイズ密度（これはよくわかりません．．．）　：0.1<br />
+　指数（たぶん，f^(-n)のｎのこと）　　　　　　：　1<br />
+　dt（このアイコン内での設定ではないですが）　：　0.5 ms</span><br>
+で生成した波形に対して，<br />
+<span class="Blue">　FFTサンプル数　：　2048</span><br />
+でパワースペクトルを計算すると</p>
+<p><img src="power_spectrum-20.png" width="998" height="256" alt=""/></p>
+<p>となります．左右とも同じデータで，右図は両対数をとっています．</p>
+<p>一様ホワイトノイズと同様に，両対数プロットではなんとか周波数によらない一定のパワーの様子が見て取れますが，かなりノイジーです（ノイズのノイズ？）．</p>
+<p>1,000回加算平均をとると，</p>
+<p><img src="power_spectrum-21.png" width="999" height="255" alt=""/></p>
+<p>となり，両対数プロットをとると，直線状に減衰していることがわかります（高周波では寝てきている理由はわかりません）．</p>
+<p>直線エリアのみで近似してみると，</p>
+<p><img src="power_spectrum-22.png" width="585" height="277" alt=""/></p>
+<p>と低周波領域が若干外れていますが，傾きが，-1.00387，となり，<span class="Red-Bold">1/f，で減衰</span>していることがわかります．</p>
+<p>&nbsp;</p>
+<p>このように，パワースペクトルを計算することにより，<span class="Red-Bold">ゆらぎの大きさ（分散），減衰の傾き</span>，などを推定することができます．</p>
+<p>では，次に両対数プロットをとったところの問題点，解決策を考えていきましょう．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="power_spectrum-04.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="power_spectrum-06.html"><img src="R-arrow.png" alt="r" width="57" height="34" border="0" /></a></p>
+</body>
+</html>

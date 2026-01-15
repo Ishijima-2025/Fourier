@@ -1,0 +1,104 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>power_spectrum</title>
+<link href="090413.css" rel="stylesheet" type="text/css" />
+<link href="160324.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+
+.style7 {color: #000000; }
+
+.style10 {color: #000000; }
+
+.style1 {color: #0000FF}
+
+</style>
+</head>
+
+<body>
+<p><span class="X-Large-Bold-RED">パワースペクトルの実際の作業内容-04</span></p>
+<p><span class="Large-Bold-Red">　様々なゆらぎ波形</span></p>
+<p>&nbsp;</p>
+<p>プログラムは，<a href="https://www.ni.com/ja/shop/labview.html" target="_blank">Labview (National Instruments)</a>を使います．</p>
+<p>有料で，生命科学の世界ではメジャーではありませんが，長年親しんだプログラムなので．．．</p>
+<p>いずれ，Pytyon．でも実装します．</p>
+<p>&nbsp;</p>
+<p>ノイズ生成はいくつか用意されていて，</p>
+<p class="Blue-Bold">一様ホワイトノイズ</p>
+<p><img src="power_spectrum-06.png" width="302" height="142" alt=""/></p>
+<p class="Blue-Bold">ガウスホワイトノイズ</p>
+<p><img src="power_spectrum-07.png" width="312" height="142" alt=""/></p>
+<p class="Blue-Bold">逆ｆノイズ波形（ピンクノイズ，ブラウニアンノイズ）</p>
+<p><img src="power_spectrum-08.png" width="357" height="202" alt=""/></p>
+<p>などあります．</p>
+<p>&nbsp;</p>
+<p><span class="Large-Bold-Blue">・一様ホワイトノイズ</span></p>
+<p><span class="Blue">　サンプル（サンプル数）：2048<br />
+  　標準偏差　　　　　　　：1<br />
+  　dt（このアイコン内での設定ではないですが）　：　0.5 ms</span><br />
+で生成すると，</p>
+<p><img src="power_spectrum-09.png" width="795" height="301" alt=""/></p>
+<p>という，-1から１まで一様な分布のノイズを生成することができます．実際にヒストグラムをとると，</p>
+<p><img src="power_spectrum-11.png" width="342" height="312" alt=""/></p>
+<p>のように，ほぼ一様となります．</p>
+<p>この分布の分散は，ーAからAまでの分布を考えると，</p>
+<p><img src="power_spectrum-10.png" width="554" height="248" alt=""/></p>
+<p>のようになります．縦軸の値，ｐ，は，全面積が１で規格化されているので，</p>
+<p>\(\Large \displaystyle   １= 2 \times A \times p \)</p>
+<p>\(\Large \displaystyle   p = \frac{1}{2 \times A } \)</p>
+<p>となります．</p>
+<p>分散は（平均が０なので），</p>
+<p>\(\Large \displaystyle Variance  = \int_{-A}^{A} \frac{1}{2 \times A } \ x^2 dt \)</p>
+<p>\(\Large \displaystyle \hspace{48 pt} = \frac{1}{2  A } \left[ \frac{x^3}{3} \right]_{-A}^A \)</p>
+<p>\(\Large \displaystyle \hspace{48 pt} = \frac{1}{2  A } \frac{2 A^3}{3}  \)</p>
+<p>\(\Large \displaystyle \hspace{48 pt} = \frac{ A^2}{3}  \)</p>
+<p>となります．</p>
+<p>実際に，振幅，A=1，の場合には，実際のデータから分散を求めると，0.33，となり，理論通りであることがわかります．</p>
+<p>　</p>
+<p><span class="Large-Bold-Blue">・ガウスホワイトノイズ</span></p>
+<p><span class="Blue">　サンプル（サンプル数）：2048<br />
+　標準偏差　　　　　　　：1<br />
+　dt（このアイコン内での設定ではないですが）　：　0.5 ms</span><br />
+で生成すると，</p>
+<p><img src="power_spectrum-12.png" width="749" height="281" alt=""/></p>
+<p>という，標準偏差１のガウス分布のノイズを生成することができます．実際にヒストグラムをとると，</p>
+<p><img src="power_spectrum-13.png" width="341" height="312" alt=""/></p>
+<p>のように，ほぼガウス分布となります．</p>
+<p>&nbsp;</p>
+<p><span class="Large-Bold-Blue">・逆ｆノイズ波形</span></p>
+<p>1/ｆノイズ（ピンクノイズ）を生成するために，<br />
+  <span class="Blue">　サンプル（サンプル数） 　　　　　　　　　　　：2048<br />
+　ノイズ密度（これはよくわかりません．．．）　：0.1<br />
+　指数（たぶん，f^(-n)のｎのこと）　　　　　　：　1<br />
+　dt（このアイコン内での設定ではないですが）　：　0.5 ms</span></p>
+<p>として生成すると，</p>
+<p><img src="power_spectrum-14.png" width="749" height="282" alt=""/></p>
+<p>という波形を生成できます．</p>
+<p>&nbsp;</p>
+<p>次ページに，上記のゆらぎのパワースペクトルを計算してみましょう．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="power_spectrum-03.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="power_spectrum-05.html"><img src="R-arrow.png" alt="r" width="57" height="34" border="0" /></a></p>
+</body>
+</html>

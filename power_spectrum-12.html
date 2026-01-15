@@ -1,0 +1,150 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>power_spectrum</title>
+<link href="090413.css" rel="stylesheet" type="text/css" />
+<link href="160324.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+
+.style7 {color: #000000; }
+
+.style10 {color: #000000; }
+
+.style1 {color: #0000FF}
+
+</style>
+</head>
+
+<body>
+<p><span class="X-Large-Bold-RED">パワースペクトルの実際の作業内容-12</span></p>
+<p><span class="Large-Bold-Red">　トラップされたビーズのブラウン運動の場合</span></p>
+<p>&nbsp;</p>
+<p>トラップされたビーズのブラウン運動の場合は，<a href="Simulation-11.html">ここ</a>で説明したように，メトロポリス法を用います．</p>
+<p>では実際に確かめてみましょう．</p>
+<p>元データ<br />
+  <span class="Blue">　トラップされたビーズのブラウン運動<br />
+　実際の波形の時間 (s)　：　S<sub>time</sub> = 262.144 s<br />
+　サンプル周波数 (1/s)　：　S<sub>freq</sub> = 20,000 kHz<br />
+　サンプル時間分解能 (s)　：　dt = 0.00005 ms<br />
+　実際の波形の数　：　n = 8388608</span> <span class="Blue">= 2<sup>23</sup></span><br />
+<span class="Blue">　FFTサイズ　：　1024</span></p>
+<p>とサンプル周波数（およびサンプル時間分解能）を一桁上げています．</p>
+<p>それは，トラップされたビーズのブラウン運動の場合，当分配の法則から，</p>
+<p>\(\Large \displaystyle    \frac{1}{2} \ K  &lt;x^2&gt; = =  \frac{1}{2} \ k_B \ T \)</p>
+<p>　K　：　ばね定数 (pN/nm)<br /> 
+	　&lt;x<sup>2</sup> &gt; 　：　ゆらぎの二乗変位 (nm<sup>2</sup>)
+    <br />
+　k<sub>B</sub>　：　ボルツマン定数<br />
+　T　：　絶対温度</p>
+<p>の関係にあるためで，また，<a href="Simulation-13.html">ここ</a>，にあるように，dtとdxとの関係は，拡散の式から，</p>
+<p>\(\Large \displaystyle    dt = \frac{&lt;x^2&gt; }{2D} \)</p>
+<p>\(\Large \displaystyle    D = \frac{k_B T}{ \gamma} \)</p>
+<p>\(\Large \displaystyle     \gamma =  6 \pi \ \eta \ r \)　（球の場合）</p>
+<p>　D　：　拡散係数 (nm<sup>2</sup>/s)<br />
+　η　：　粘度 (N/s)<br />
+　ｒ　：　球の半径 (nm)</p>
+<p>ので，dxは，</p>
+<p>\(\Large \displaystyle    dx = \sqrt{ &lt;x^2&gt; } = \sqrt{2 \times  \frac{k_B T}{ 6 \pi \ \eta \ r} \times dt} \)</p>
+<p>で決まります．</p>
+<p>したがって，上記の条件では，<br />
+　<span class="Red-Bold">dx = 4.69 nm</span><br />
+となります．</p>
+<p>さて，トラップされたビーズのブラウン運動の場合，パワースペクトルは<a href="https://www.fbs.osaka-u.ac.jp/labs/ishijima/power-06.html">ローレンツ型</a>となりますが，</p>
+<p>\(\Large \displaystyle    \Phi (f)  = \frac{ \Phi(0)}{1 + \left( \frac{f}{f_c} \right)^2}\)</p>
+<p>ここで，</p>
+<p>\(\Large \displaystyle    \Phi (0)  = \frac{ 2 \ k_B T \ \gamma}{k^2}\)</p>
+<p>\(\Large \displaystyle    f_c  = \frac{ K}{2 \pi \ \gamma}\)</p>
+<p>です．</p>
+<p>実際に作成してみると，</p>
+<p><img src="power_spectrum-36.png" width="595" height="233" alt=""/></p>
+<p>となります．</p>
+<p>ここで，</p>
+<p>\(\Large \displaystyle    K  = 0.01 pN/nm \)</p>
+<p>としたので，</p>
+<p>\(\Large \displaystyle    &lt;x^2&gt; = \frac{k_B T}{K}  = \frac{4.14 \times 10^{-21} Nm}{0.01 \times 10^{-3} N/m} = 414 \ nm^2 \)</p>
+<p>と理論上計算できます．実際の波形の分散値は，<br />
+　<span class="Red-Bold">413.41 nm<sup>2</sup></span><br />
+となり，一致していることがわかります．</p>
+<p>これを，<br />
+  　100-10000 Hz<br />
+  　10-100 Hz<br />
+  　1-10 Hz<br />
+で分けて考えてみます．</p>
+<table width="504" border="1">
+  <tbody>
+    <tr>
+      <td width="118" style="text-align: center">&nbsp;</td>
+      <td width="84" style="text-align: center">加算平均</td>
+      <td width="96" style="text-align: center">ローパス</td>
+      <td width="80" style="text-align: center">間引き</td>
+      <td width="92" style="text-align: center">df</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">100-1000 Hz</td>
+      <td style="text-align: right">8192</td>
+      <td style="text-align: right">-</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">19.5 Hz</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">10-100 Hz</td>
+      <td style="text-align: right">81</td>
+      <td style="text-align: right">100 Hz</td>
+      <td style="text-align: right">100</td>
+      <td style="text-align: right">0.195 Hz</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">1-10 Hz</td>
+      <td style="text-align: right">8</td>
+      <td style="text-align: right">10 Hz</td>
+      <td style="text-align: right">1000</td>
+      <td style="text-align: right">0.0195 Hz</td>
+    </tr>
+  </tbody>
+</table>
+<p>このようなパラメータでローパス，間引き，加算平均を掛けてみます．</p>
+<p><img src="power_spectrum-37.png" width="541" height="1046" alt=""/></p>
+<p>上から，<br />
+  　100-10000 Hz<br />
+　10-100 Hz<br />
+　1-10 Hz<br />
+となります．</p>
+<p>このデータを各周波数帯で切り取り，融合させると，</p>
+<p><img src="power_spectrum-38.png" width="567" height="370" alt=""/></p>
+<p>という形となり，</p>
+<p>\(\Large \displaystyle    \Phi (f)  = \frac{ \Phi(0)}{1 + \left( \frac{f}{f_c} \right)^2}\)</p>
+<p>どおりのカーブとなり，</p>
+<p>ここで，</p>
+<p>\(\Large \displaystyle    \Phi (0)  = 3.121 nm^2 / Hz\)</p>
+<p>\(\Large \displaystyle    f_c  = 84.43 Hz\)</p>
+<p>の理論値とぴったりフィットします．</p>
+<p>ちなみに，dt = 0.0005 sと10倍荒くして計算すると，ローレンツ型にはなりますが，Φ(0)，f<sub>c</sub>の値それぞれが若干くるってきます．</p>
+<p>dx = 14.8 nm</p>
+<p>とビーズのブラウン運動をシミュレートするには荒すぎたのですね．</p>
+<p>最後にまとめです．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="power_spectrum-11.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="power_spectrum-13.html"><img src="R-arrow.png" alt="r" width="57" height="34" border="0" /></a></p>
+</body>
+</html>

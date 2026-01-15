@@ -1,0 +1,107 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>power_spectrum</title>
+<link href="090413.css" rel="stylesheet" type="text/css" />
+<link href="160324.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+
+.style7 {color: #000000; }
+
+.style10 {color: #000000; }
+
+.style1 {color: #0000FF}
+
+</style>
+</head>
+
+<body>
+<p><span class="X-Large-Bold-RED">パワースペクトルの実際の作業内容-11</span></p>
+<p><span class="Large-Bold-Red">　ピンクノイズの場合</span></p>
+<p>&nbsp;</p>
+<p>では実際に確かめてみましょう．</p>
+<p>元データ<br />
+  <span class="Blue">　ピンクノイズ<br />
+　実際の波形の時間 (s)　：　S<sub>time</sub> = 262.144 s<br />
+　サンプル周波数 (1/s)　：　S<sub>freq</sub> = 2,000 kHz<br />
+　サンプル時間分解能 (s)　：　dt = 0.0005 ms<br />
+　実際の波形の数　：　n = 524288</span> = 2<sup>19</sup><br />
+<span class="Blue">　FFTサイズ　：　1024</span></p>
+<p><img src="power_spectrum-33.png" width="515" height="242" alt=""/></p>
+<p>これを，<br />
+  　100-1000 Hz<br />
+  　10-100 Hz<br />
+  　1-10 Hz<br />
+で分けて考えてみます．</p>
+<table width="504" border="1">
+  <tbody>
+    <tr>
+      <td width="118" style="text-align: center">&nbsp;</td>
+      <td width="84" style="text-align: center">加算平均</td>
+      <td width="96" style="text-align: center">ローパス</td>
+      <td width="80" style="text-align: center">間引き</td>
+      <td width="92" style="text-align: center">df</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">100-1000 Hz</td>
+      <td style="text-align: right">512</td>
+      <td style="text-align: right">-</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">1.95 Hz</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">10-100 Hz</td>
+      <td style="text-align: right">51</td>
+      <td style="text-align: right">100 Hz</td>
+      <td style="text-align: right">10</td>
+      <td style="text-align: right">0.195 Hz</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">1-10 Hz</td>
+      <td style="text-align: right">5</td>
+      <td style="text-align: right">10 Hz</td>
+      <td style="text-align: right">100</td>
+      <td style="text-align: right">0.0195 Hz</td>
+    </tr>
+  </tbody>
+</table>
+<p>このようなパラメータでローパス，間引き，加算平均を掛けてみます．</p>
+<p><img src="power_spectrum-34.png" width="525" height="1316" alt=""/></p>
+<p>上から，<br />
+  　100-1000 Hz<br />
+　10-100 Hz<br />
+　1-10 Hz<br />
+となります．</p>
+<p>このデータを各周波数帯で切り取り，融合させると，</p>
+<p><img src="power_spectrum-35.png" width="562" height="432" alt=""/></p>
+<p>という形となり，200 Hzまでのスペクトルを線形近似（対数で）すると，傾きが，<br />
+　<span class="Red-Bold">0.958</span><br />
+とほぼ１となり，ピンクノイズを再現できます．</p>
+<p>&nbsp;</p>
+<p>次は，トラップされたビーズのブラウン運動です．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="power_spectrum-10.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="power_spectrum-12.html"><img src="R-arrow.png" alt="r" width="57" height="34" border="0" /></a></p>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>power_spectrum</title>
+<link href="090413.css" rel="stylesheet" type="text/css" />
+<link href="160324.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+
+.style7 {color: #000000; }
+
+.style10 {color: #000000; }
+
+.style1 {color: #0000FF}
+
+</style>
+</head>
+
+<body>
+<p><span class="X-Large-Bold-RED">パワースペクトルの実際の作業内容-02</span></p>
+<p>　<span class="Large-Bold-Red">ノイズのノイズ</span></p>
+<p>それは，ノイズ，です．厳密に（？）いうと，ゆらぎ計算における計算結果のばらつきでしょうか？</p>
+<p>そこら辺の厳密な数学は，今回の，”作業”，には関係ないので省きます（というか知らない，本を読んで勉強しよう）</p>
+<p>たぶん，フーリエ変換そのものが持つノイズ，有限のデータ長によるものなのでしょう．</p>
+<p>実際にノイズを加えたシミュレーションを行ってみると，前頁のように，</p>
+<p><span class="Blue-Bold">ピンクノイズ（1/fに比例，昔は1/fノイズと言われ，心地よいゆらぎと言われていましたね，家にある扇風機も1/fゆらぎ機能搭載です）<br />
+  ブラウニアンノイズ（1/f<sup>2</sup>に比例しているということです）<br />
+  ローレンツ型ノイズ(1/(1+(f/f<sub>c</sub>)<sup>2</sup>に比例)</span></p>
+<p>にノイズ（ランダム関数０～１，に係数をかけたもの）を足してみると，リニアプロットでは，</p>
+<p>などあります．これを単純にエクセルでグラフ化（横軸周波数，縦軸はたぶんパワー密度）してみると</p>
+<p><img src="power_spectrum-01.png" width="500" height="280" alt=""/><img src="power_spectrum-03.png" width="500" height="280" alt=""/></p>
+<p>と右のグラフがノイズを加えたものですが，まあばらついているけど，まあそんなもんですね．．．</p>
+<p>しかし，同じデータを両対数プロットで示すと，</p>
+<p><img src="power_spectrum-02.png" width="500" height="280" alt=""/><img src="power_spectrum-04.png" width="500" height="280" alt=""/></p>
+<p>ともう傾きの議論どころではなくなります．これは当然ながら同じ大きさのゆらぎに対して，縦軸が，１，0.1，0.01とゆらぎの大きさに比べて相対的な値が小さいからです．</p>
+<p>このように，両対数プロットでは高周波域（右肩下がりのパワーとして）ではノイズが誇張されてしまい，解析しにくくなる，という問題があります．</p>
+<p>これは，後ほど考えていきましょう．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="power_spectrum-01.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="power_spectrum-03.html"><img src="R-arrow.png" alt="r" width="57" height="34" border="0" /></a></p>
+</body>
+</html>

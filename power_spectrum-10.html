@@ -1,0 +1,117 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>power_spectrum</title>
+<link href="090413.css" rel="stylesheet" type="text/css" />
+<link href="160324.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+
+.style7 {color: #000000; }
+
+.style10 {color: #000000; }
+
+.style1 {color: #0000FF}
+
+</style>
+</head>
+
+<body>
+<p><span class="X-Large-Bold-RED">パワースペクトルの実際の作業内容-10</span></p>
+<p><span class="Large-Bold-Red">　高周波領域はどうする？</span></p>
+<p>&nbsp;</p>
+<p>両対数プロットをとったときの問題点を考えていきましょう．</p>
+<p><a href="power_spectrum-06.html">ここ</a>と同じように，<span class="Blue-Bold">逆ｆノイズ波形</span>を例にとると,</p>
+<p>1/ｆノイズ（ピンクノイズ）を生成するために，<br>
+  サンプル（サンプル数） 　　　　　　　　　　　：2048<br>
+  ノイズ密度（これはよくわかりません．．．）　：0.1<br>
+  指数（たぶん，f^(-n)のｎのこと）　　　　　　：　1<br>
+  dt（このアイコン内での設定ではないですが）　：　0.5 ms<br>
+  で生成した波形に対して，<br>
+  FFTサンプル数　：　2048<br>
+  でパワースペクトルを計算すると</p>
+<p><img src="power_spectrum-23.png" width="588" height="296" alt=""/></p>
+<p>と両対数プロットの場合では，<br>
+  <span class="Blue-Bold">　高周波に行くに従い，ノイズ（ノイズのノイズ）が大きくなる<br>
+  　高周波に行くに従い，dfが密になる</span><span class="Blue"><br>
+  　低周波領域では，dfが荒い</span><br>
+ことがわかります．</p>
+<p>ちなみに，この条件ですと，</p>
+<p>\(\Large \displaystyle   df  = \frac{S_{freq}}{n} =  \frac{1}{S_{time}}\)</p>
+<p>ですので，</p>
+<p>\(\Large \displaystyle   df  = \frac{1}{0.0005} \ \frac{1}{2048} = 0.9766 Hz\)</p>
+<p>と約1 Hz</p>
+<p>周波数帯ごとにポイント数を見ると，<br />
+　1～10 Hz　　　：　 9 point<br />
+　10～100 Hz　　：　90 point<br />
+　100～1000 Hz　：　900 point</p>
+<p>と対数プロットであるためにポイント数がだいぶ違います．</p>
+<p>これを解消するためには，</p>
+<p class="Large-Bold-Red">　周波数領域は変えずに，高周波領域でdfを荒くする</p>
+<p>のが一番簡単な方法です．</p>
+<p>フーリエ変換においては，</p>
+<p>\(\Large \displaystyle   df  = \frac{S_{freq}}{n} =  \frac{1}{S_{time}}\)</p>
+<p>\(\Large \displaystyle   f_{number}  =  \frac{n}{2} \)</p>
+<p>\(\Large \displaystyle   f_{range}  =  \frac{S_{freq}}{2} \)</p>
+<p>ですので，</p>
+<p class="Red-Bold">　f<sub>range</sub>は変えてはいけない　＝　S<sub>freq</sub>を変えない</p>
+<p class="Red-Bold">　dfを大きくする（S<sub>freq</sub>を変えずに）　-&gt; ｎを小さく（少なく）すればいい</p>
+<p>ことになります．つまり，データ長を短くすればいいのです．</p>
+<p>これで，上記の問題の，<br />
+<span class="Blue-Bold">　高周波に行くに従い，dfが密になる<br />
+</span>は解決できそうです．</p>
+<p>しかし，まだ，<br />
+  <span class="Blue-Bold">　高周波に行くに従い，ノイズ（ノイズのノイズ）が大きくなる<br />
+  </span>
+をどうするか．．．</p>
+<p>これは，解決策が簡単．</p>
+<p class="Large-Bold-Red">　データ長が短くなったので，もともと長いデータを短くしてパワースペクトルを取り，加算平均すればいい</p>
+<p>ことになります．パワースペクトルにおいては位相情報が失われるのでランダムノイズでも加算平均しても情報が失われません．</p>
+<p>実際に，ピンクノイズを発生させて，一回のみのパワースペクトルと加算平均したパワースペクトルを比べてみましょう．</p>
+<p>元データ<br />
+  <span class="Blue">　ピンクノイズ<br />
+　実際の波形の時間 (s)　：　S<sub>time</sub> = 262.144 s<br />
+　サンプル周波数 (1/s)　：　S<sub>freq</sub> = 2,000 kHz<br />
+　サンプル時間分解能 (s)　：　dt = 0.0005 ms<br />
+　実際の波形の数　：　n = 524288</span><br />
+<span class="Blue">　FFTサイズ　：　1024<br />
+　加算平均　：　512 回</span></p>
+<p><img src="power_spectrum-31.png" width="566" height="397" alt=""/></p>
+<p>赤線が1回のみ，白線が512回の加算平均の結果です．</p>
+<p>このようにノイズのノイズがだいぶ減少したことがわかります．</p>
+<p>&nbsp;</p>
+<p>つまり，作業手順として，<br />
+  <span class="Red-Bold">　すべてのデータを一度にフーリエ変換するのではなく，区切ってそれぞれにフーリエ変換する<br />
+　それぞれのフーリエ変換結果を加算平均する</span><br />
+となります．</p>
+<p>例えば，<br />
+  <span class="Red">　元データのサンプル周波数が，524288 point，なら<br />
+  　1024 pointごとに区切る<br />
+  　それぞれをフーリエ変換（512回）<br />
+  　それぞれのフーリエ変換結果を加算平均する</span><br />
+ことで達成できます．</p>
+<p>これで<span class="Red-Bold">高周波領域対策は完了</span>です．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="power_spectrum-09.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="power_spectrum-11.html"><img src="R-arrow.png" alt="r" width="57" height="34" border="0" /></a></p>
+</body>
+</html>

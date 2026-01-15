@@ -1,0 +1,58 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>power_spectrum</title>
+<link href="090413.css" rel="stylesheet" type="text/css" />
+<link href="160324.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+
+.style7 {color: #000000; }
+
+.style10 {color: #000000; }
+
+.style1 {color: #0000FF}
+
+</style>
+</head>
+
+<body>
+<p><span class="X-Large-Bold-RED">パワースペクトルの実際の作業内容-13</span></p>
+<p><span class="Large-Bold-Red">　まとめ</span></p>
+<p>&nbsp;</p>
+<p>今までの作業をまとめた図を作ってみました．</p>
+<p><img src="power_spectrum-32.png" width="829" height="523" alt=""/></p>
+<p>このように，低周波領域と高周波領域で作業を分けて考えるとわかりやすいです．</p>
+<p>もちろん，二択である必要はなく，<br>
+  100-1000 Hz<br />
+  10-100 Hz<br />
+  1-10 Hz<br>
+  のようにわけて考えてもいいし，データ長が十分長ければ，上の二つの作業を融合してもいいです．<br>
+  <span class="Red-Bold">　データを分割　→　ローパス　→　間引く</span><br>
+  みたいに．</p>
+<p>ただ，この手法，フーリエ変換を用いている方々にはそんなにメジャーではなく，検索（画像を）しても，</p>
+<p><a href="https://www.cmu.edu/ceic/assets/docs/publications/working-papers/ceic-06-01.pdf" target="_blank">ここ</a>，<a href="https://www.researchgate.net/figure/Power-spectral-density-PSD-for-the-surface-magnetic-field-strength-at-the-InSight_fig4_366968480" target="_blank">ここ</a>，ぐらいしか見つかりませんでした．知っている人は使っている，知らない人は知らない，ですね．</p>
+<p>もちろん，この手法が私のオリジナルなわけもなく，<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1224937/" target="_blank">1996年の論文</a>作成の際に，どなたかの論文，教科書を参考にさせてもらったのだと思いますが，</p>
+<p>あのころは，DADiSP，という波形解析ソフトを使っていた記憶が．．．．</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="power_spectrum-12.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span></p>
+</body>
+</html>

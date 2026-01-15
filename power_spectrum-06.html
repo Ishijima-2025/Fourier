@@ -1,0 +1,152 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>power_spectrum</title>
+<link href="090413.css" rel="stylesheet" type="text/css" />
+<link href="160324.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+
+.style7 {color: #000000; }
+
+.style10 {color: #000000; }
+
+.style1 {color: #0000FF}
+
+</style>
+</head>
+
+<body>
+<p><span class="X-Large-Bold-RED">パワースペクトルの実際の作業内容-06</span></p>
+<p><span class="Large-Bold-Red">　両対数プロットの問題点，解決策</span></p>
+<p>両対数プロットをとったときの問題点を考えていきましょう．</p>
+<p><span class="Large-Bold-Blue">逆ｆノイズ波形</span>を例にとるとわかりやすいかもしれません．</p>
+<p>1/ｆノイズ（ピンクノイズ）を生成するために，<br />
+  <span class="Blue">　サンプル（サンプル数） 　　　　　　　　　　　：2048<br />
+　ノイズ密度（これはよくわかりません．．．）　：0.1<br />
+　指数（たぶん，f^(-n)のｎのこと）　　　　　　：　1<br />
+　dt（このアイコン内での設定ではないですが）　：　0.5 ms</span><br>
+で生成した波形に対して，<br />
+<span class="Blue">　FFTサンプル数　：　2048</span><br />
+でパワースペクトルを計算すると</p>
+<p><img src="power_spectrum-23.png" width="588" height="296" alt=""/></p>
+<p>と両対数プロットの場合では，<br>
+  <span class="Blue">　高周波に行くに従い，ノイズ（ノイズのノイズ）が大きくなる<br>
+　高周波に行くに従い，dfが密になる<br>
+　低周波領域では，dfが荒い</span><br>
+ことがわかります．これではなかなか近似がうまくいかなくなりそうですね．<br>
+<span class="Blue">　低周波領域のポイントが少ない<br>
+　高周波領域のポイントが多い</span><br>
+ので，近似をすると高周波領域に引っ張られちゃいます．</p>
+<p>前々ページにあるように，</p>
+<p class="Blue-Bold">　実際の波形の時間 (s)　　：　S<sub>time</sub><br />
+  　サンプル周波数 (1/s)　　：　S<sub>freq</sub><br />
+  　サンプル時間分解能 (s)　：　dt<br />
+  　　実際の波形の数　　　　　：　n</p>
+<p>とすると，</p>
+<p>\(\Large \displaystyle   S_{time}  = n \times dt = \frac{n}{S_{freq}} \)</p>
+<p>の関係になります．これにフーリエ変換すると，</p>
+<p class="Blue-Bold">　フーリエ変換の横軸の最小単位 (Hz)　　　：　df<br />
+  　フーリエ変換の横軸の数　　　　　　　　：　f<sub>number</sub><br />
+  　フーリエ変換の横軸のレンジ（最大値）　： 　f<sub>range</sub></p>
+<p>とすると，</p>
+<p>\(\Large \displaystyle   df  = \frac{S_{freq}}{n} =  \frac{1}{S_{time}}\)</p>
+<p>\(\Large \displaystyle   f_{number}  =  \frac{n}{2} \)</p>
+<p>\(\Large \displaystyle   f_{range}  =  \frac{S_{freq}}{2} \)</p>
+<p>なので，</p>
+<p> 　dt = 0.0005 ms (S<sub>freq</sub> = 2000 1/s)<br>
+　n = 2048<br />
+　S<sub>time</sub> = 0.0005 ms×2048 = 約１S</p>
+<p>とすると，</p>
+<p>\(\Large \displaystyle   df  = \frac{2000}{2048} =  0.9766 Hz \)</p>
+<p>と，<br />
+  <span class="Blue">　1～10 Hzの間に約10ポイント</span><br />
+しかポイントがないことがわかります．</p>
+<p>逆に，<br />
+  <span class="Blue">　100～10000 Hzの間に約900ポイント</span><br />
+もポイントがあることがわかります．</p>
+<p>対数で表示すると同じ幅なのに．．．</p>
+<p>直感的にも，<br />
+  <span class="Red">　もっと低周波にポイントを<br />
+　高周波のポイントを少なくしてもいい</span><br />
+ことがわかります．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・低周波領域の周波数分解能を上げるにはどうしたらいい？</p>
+<p>これは簡単，dfの計算式を見るように，</p>
+<p>\(\Large \displaystyle   df  = \frac{S_{freq}}{n} =  \color{red}{\frac{1}{S_{time}}}\)</p>
+<p>とにかく<span class="Red-Bold">計測時間を延ばす</span>ことに尽きます．</p>
+<p>当然ながら，低周波とはゆっくりとした周期なので長時間データが取ることが必須となります．</p>
+<p>ですので，蛍光色素の退色，たんぱくの変性などなかなか厳しいものがあります．</p>
+<p>しかし，もし，長時間データを取得できたとしても，別の問題があります．</p>
+<p>それは，<span class="Blue">計算時間の増大</span>，です．</p>
+<p>FFTの最初のFは，Fast，であるように，高速計算できるところに特徴があります．しかしそれは，あくまで一般的なフーリエ変換に比べて，です．</p>
+<p><a href="https://www.isc.meiji.ac.jp/~mcelab/www_jyo_en2/jyo_en_2_8_j_2015_f/index_sj.html" target="_blank">こちらのサイト</a>にありますように，FFTの計算時間は，</p>
+<p>\(\Large \displaystyle   計算時間  \propto  N \ log_2 \left(\frac{N}{2} \right) \)</p>
+<p>に比例することが知られています（ちゃんと計算したことはないですが）．</p>
+<p>すると，たとえば（比例係数を無視して），</p>
+<table width="200" border="1">
+  <tbody>
+    <tr>
+      <td height="37">n</td>
+      <td>nlog<sub>2</sub>(n/2)</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>48</td>
+    </tr>
+    <tr>
+      <td>32</td>
+      <td>128</td>
+    </tr>
+  </tbody>
+</table>
+<p>とｎが2倍になっても，2倍以上の計算時間となります．</p>
+<p>グラフで表すと，</p>
+<p><img src="power_spectrum-39.png" width="386" height="376" alt=""/></p>
+<p>とDFTに比べるとFFTは圧倒的に計算時間を短縮できますが，いずれも下凸カーブなのでデータ数が多くなると計算時間がどんどん長くなります．</p>
+<p>ですので，あまりデータ数が多いと莫大な計算時間がかかってしまいます．</p>
+<p>しかし，dfの式をよく見ると，</p>
+<p>\(\Large \displaystyle   df  = \color{red}{\frac{S_{freq}}{n}} =  \frac{1}{S_{time}}\)</p>
+<p>とあるように，サンプル周波数，S<sub>freq</sub>，を下げれば，同じｎであっても，S<sub>time</sub>，を伸ばすことができます．</p>
+<p>100ポイントであっても，1秒ごとなら100秒，0.1秒ごとなら10秒となるので．</p>
+<p>しかし，やみくもにサンプル周波数を下げると，</p>
+<p>\(\Large \displaystyle   f_{range}  =  \frac{S_{freq}}{2} \)</p>
+<p>今度は<span class="Blue">高周波領域の解析ができなくなってしまいます</span>．</p>
+<p>八方ふさがりですが，一ついい手があります．それは，</p>
+<p>　<span class="Red-Bold">高時間分解能でデータを取得して，あとで間引けばいい</span></p>
+<p>ということ．</p>
+<p>1ms間隔でデータを取得して，その後データを間引けば(Decimate)，高周波領域も低周波領域も高い分解能で解析できます．</p>
+<p>しかし．．．．<span class="Blue-Bold">そう簡単にはいかないのです</span>．．．．その説明と対策は次ページに</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="power_spectrum-05.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="power_spectrum-07.html"><img src="R-arrow.png" alt="r" width="57" height="34" border="0" /></a></p>
+</body>
+</html>

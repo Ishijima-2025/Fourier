@@ -1,0 +1,116 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>power_spectrum</title>
+<link href="090413.css" rel="stylesheet" type="text/css" />
+<link href="160324.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+
+.style7 {color: #000000; }
+
+.style10 {color: #000000; }
+
+.style1 {color: #0000FF}
+
+</style>
+</head>
+
+<body>
+<p><span class="X-Large-Bold-RED">パワースペクトルの実際の作業内容-09</span></p>
+<p><span class="Large-Bold-Red">　ローパスフィルタ</span></p>
+<p>&nbsp;</p>
+<p>ローパスフィルタとは，<a href="https://ja.wikipedia.org/wiki/%E3%83%AD%E3%83%BC%E3%83%91%E3%82%B9%E3%83%95%E3%82%A3%E3%83%AB%E3%82%BF" target="_blank">ここ</a>，にあるように，</p>
+<p class="Red-Bold">　ある周波数より低い周波数の成分はほとんど減衰させず，高い周波数の成分を減衰させるフィルタ</p>
+<p>となります．</p>
+<p>この逆が，<span class="Blue-Bold">ハイパスフィルタ</span>（低い周波数成分を減衰させる）</p>
+<p>ある周波数帯のみを透過させるのが，<span class="Blue-Bold">バンドバスフィルタ</span></p>
+<p>ある周波数帯のみを減衰させるのが，<span class="Blue-Bold">バンドストップフィルタ</span></p>
+<p>です．</p>
+<p>フィルタにもいろんな手法があるようです．　<br />
+  <span class="Blue">　FIR窓処理フィルタ<br />
+  　サビツキー・ゴーレイFIR平滑化フィルタ<br />
+  　ゼロ位相のフィルタ<br />
+　チェビシェフ<br />
+　バタワースフィルタ<br />
+　ベッセルフィルタ<br />
+　逆fフィルタ<br />
+　逆チェビシェフフィルタ<br />
+　数学的モフォロジーフィルタ<br />
+　楕円フィルタ<br />
+　中央値フィルタ<br />
+　等リプルフィルタ</span><br />
+などなど（いずれも，Labviewコマンドより）．</p>
+<p><span class="Blue">移動平均</span>もローパスフィルタの一種ですね．</p>
+<p>私にはこれらの原理，計算方法，特性など．．．まったくわかりません．．．．</p>
+<p>ですので，特性のよいフィルターを選びます．それは，<br />
+  <span class="Blue-Bold">　カット周波数がシャープ<br />
+  　透過領域が平坦（できれば100％）<br />
+  　減衰領域が限りなく０に近い</span><br />
+  というものでしょうか．<br />
+</p>
+<p>実際に，Labview，でいくつかのフィルタ特性を調べてみました．</p>
+<p><img src="power_spectrum-28.png" width="717" height="581" alt=""/></p>
+<p>という具合になりました．これは単にFFTの計算です．また各種フィルターはパラメータの設定によって特性が変わります．</p>
+<p>これを見ると，<span class="Red-Bold">”チェビシェフフィルタ”</span>が上記の条件を満たしているので，これを使っていこうと思います（見た目なのでちゃんとした根拠はありません）</p>
+<p><span class="Blue">移動平均</span>の特性がとても緩やかなのがわかります．</p>
+<p>&nbsp;</p>
+<p><span class="Red">チェビシェフフィルタ</span>を通して，間引きした結果が下図となります．</p>
+<p>元データ<br />
+  <span class="Blue">　一様ホワイトノイズ<br />
+実際の波形の時間 (s)　：　S<sub>time</sub> = 1.028 s<br />
+サンプル周波数 (1/s)　：　S<sub>freq</sub> = 2,000 kHz<br />
+サンプル時間分解能 (s)　：　dt = 0.0005 ms<br />
+実際の波形の数　：　n = 2048</span><br />
+<span class="Blue">間引き方　：　1/2<br />
+加算平均　：　1000回</span></p>
+<p><img src="power_spectrum-30.png" width="646" height="644" alt=""/></p>
+<p>上が元波形，中段が間引きのみ，下段がフィルターを通した後間引いた結果，となります．</p>
+<p>右の（左側）の分散値のように，下段のフィルター・間引きの波形の分散値が半分になっていることがわかります．</p>
+<p>実際にパワースペクトルをとってみました．</p>
+<p class="Blue">　フィルター特性：チェビシェフフィルタ<br />
+　高域カットオフ周波数：525 Hz<br />
+　低域カットオフ周波数：475 Hz<br />
+　リプル(dB)　：　0.1<br />
+　次数　：　8</p>
+<p>です（細かいパラメータの意味は．．．知りません．．特に次数など．．．すいません）</p>
+<p><img src="power_spectrum-29.png" width="696" height="457" alt=""/></p>
+<p><span class="Blue">赤線が元波形，白線が間引きのみ，緑線がフィルターを通した後に間引いた結果</span>，となります．</p>
+<p>きれいに，パワーが元波形と一緒で，周波数帯が半分になっていることがわかります．</p>
+<p>上の上の波形データの右端の分散値はパワースペクトルから求めた分散値です，ちゃんと半分になっています．</p>
+<p>つまり，作業手順として，<br />
+  <span class="Red-Bold">　ローパスフィルタで高周波領域をカット<br />
+　カット周波数に応じてデータを間引く</span><br />
+となります．</p>
+<p>例えば，<br />
+  <span class="Red">　元データのサンプル周波数が，2 kHz，なら<br />
+  　周波数帯はその半分の1 kHz<br />
+  　半分（500 Hz）でカットしたいなら，<br />
+  　500 Hzのローパスフィルタを通す<br />
+  　500 Hz/1000 Hz = 1/2，なので一つずつ間引く</span><br />
+ことで達成できます．</p>
+<p>これで<span class="Red-Bold">低周波領域対策は完了</span>です．</p>
+<p>では，<span class="Blue-Bold">高周波領域はどうしたらいいでしょう？</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="power_spectrum-08.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="power_spectrum-10.html"><img src="R-arrow.png" alt="r" width="57" height="34" border="0" /></a></p>
+</body>
+</html>
