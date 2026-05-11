@@ -1,0 +1,104 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>FFT</title>
+
+<script type="text/javascript"
+
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1 class="X-Large-Bold-Blue">フーリエ変換，FFT-01</h1>
+<h1>&nbsp;</h1>
+    <p class="Large-Bold-Red">&nbsp;</p>
+<p><span class="Large-Bold-Red">フーリエ変換</span>に関しては，いくつか記事を書きましたが，今までは，<span class="Blue-Bold">パワースペクトル</span>，を主に書いてきました．しかし，</p>
+<p>　<span class="Large-Bold-Red">振幅，をきちんと計測したい</span></p>
+<p>ということから，<span class="Large-Bold-Red">FFT</span>，をきちんと使ってプログラムを書いていきたいと思います．</p>
+<p>Labview，には，今まで使ってきたアイコン，パワースペクトル，以外にも，<span class="Large-Bold-Red">FFT</span>，というアイコンが存在します．</p>
+<p><img src="FFT-101.png" width="348" height="312" alt=""/></p>
+<p>これを使ってフーリエ変換プログラムを作成していきましょう</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・波形生成</p>
+<p>正弦波をまず生成します．ブロックダイヤグラムでは，</p>
+<p><img src="FFT-103.png" width="378" height="217" alt=""/></p>
+<p><img src="FFT-104.png" width="397" height="337" alt=""/></p>
+<p>フロントパネルでは，</p>
+<p><img src="FFT-105.png" width="247" height="301" alt=""/></p>
+<p>サンプリング情報では，<br />
+　周波数　：　1.00 k<br />
+　サンプル数　：　2048<br />
+としています．</p>
+<p>正弦波の特性は，<br />
+　周波数　：　100 Hz<br />
+　振幅　：　1.00<br />
+としています．</p>
+<p>フーリエ変換した際の，周波数の横軸，df，は，こちらにあるように，</p>
+<p>\(\Large     \displaystyle     df = \frac{ frequency}{sample \ number} = \frac{1000}{2048} = 0.488 (Hz) \)</p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・FFT</p>
+<p>ここから，波形データを取り出し，窓関数（ここではハニング）処理を行った後，FFTを計算します．</p>
+<p><img src="FFT-106.png" width="547" height="296" alt=""/></p>
+<p>ここで，FFTアイコンからの出力は，</p>
+<p>　<span class="Large-Bold-Red">2/sample number</span></p>
+<p>で補正しなくてはならないので，<span class="Large-Bold-Red">sample number/2</span>，で割ります．</p>
+<p>具体的な計算は，</p>
+<p>元となる波形は， </p>
+<p>\(\Large     \displaystyle x(t) = A \ cos (2 \pi ft) = \frac{A}{2} \left( e^{j \ 2 \pi ft} + e^{-j \ 2 \pi ft}\right) \)</p>
+<p>となりますが，一般的なFFTのアルゴリズムは，以下の<span class="Blue-Bold">総和計算</span>をベースにしています．</p>
+<p>\(\Large     \displaystyle  X[k] = \sum_{n=0}^{N-1} \ x[n] \  e^{-j \ \frac{2 \pi}{N} kn} \)</p>
+<p>この式には<span class="Blue-Bold">「データ数 N で割る」</span>という工程が含まれていないため、<span class="Blue-Bold">計算結果の絶対値はデータ数 N に比例して大きくなる</span>ことになります．</p>
+<p>また，元となる波形は， </p>
+<p>\(\Large     \displaystyle x(t) = A \ cos (2 \pi ft) = \frac{A}{2} \left( e^{j \ 2 \pi ft} + e^{-j \ 2 \pi ft}\right) \)</p>
+<p>となるため，もとの<span class="Red-Bold">振幅Aのエネルギーは正負のピークに半分ずつ分配されます</span>（指数の肩が<span class="Blue-Bold">＋の場合は反時計回り</span>，<span class="Blue-Bold">ーの場合は時計回り</span>）． </p>
+<p>つまり，ーの振動を負の振動，と考えると，それぞれに半分づつ分配されることになります．</p>
+<p>したがって，<span class="Large-Bold-Red">N/2</span>，で割る必要があります</p>
+<p>&nbsp;</p>
+<p>また，<span class="Large-Bold-Red">窓関数</span>は，<a href="FFT-06-5.html">ここ</a>，に記載してあるように，FFTの場合は，<span class="Large-Bold-Red">1/2</span>，ですので，<span class="Large-Bold-Red">2倍</span>します</p>
+<p>&nbsp;</p>
+<p>また，<span class="Large-Bold-Blue">FFTの出力は，複素数</span>ですので，振幅の形に直さなくてはなりません．</p>
+<p>複素平面において，<span class="Large-Bold-Red">距離ｒ，と角度θ</span>，に置き換えます．</p>
+<p>\(\Large     \displaystyle     x + i y = \sqrt{x^2 + y^2} \frac{x + iy}{ \sqrt{x^2 + y^2} } \)</p>
+<p>\(\Large     \displaystyle      = \sqrt{x^2 + y^2} \left( cos \ \theta + i \ sin \ \theta \right) \)</p>
+<p>\(\Large     \displaystyle      = r \cdot e^{ i \theta} \)</p>
+<p>Labviewのアイコンには，複素数をこのように変換するものがありますが，”<span class="Large-Bold-Blue">絶対値</span>”，を使っても同じ結果となります．</p>
+<p>&nbsp;</p>
+<p>これらの作業後の結果は， </p>
+<p><img src="FFT-107.png" width="973" height="333" alt=""/></p>
+<p>となります（周波数ではなく，横軸はデータ数）．</p>
+<p>左右対称の形をしています．</p>
+<p>どちらか半分のみでいいので，（たとえば），左半分のみ抽出して，</p>
+<p><img src="FFT-108.png" width="777" height="315" alt=""/></p>
+<p>と無事，周波数100Hz，振幅１の正弦波のFFTが完成しました．</p>
+<p>実際のプログラムは，</p>
+<p><img src="FFT-109.png" width="961" height="312" alt=""/></p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p>次ページは，<span class="Large-Bold-Red">窓関数</span>，の効果について検討していきます．</p>
+<p>&nbsp;</p>
+
+<p><span class="style10"><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="FFT-102.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+
+</body>
+
+</html>
+

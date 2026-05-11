@@ -1,0 +1,54 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>FFT</title>
+
+<script type="text/javascript"
+
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1 class="X-Large-Bold-Blue">フーリエ変換，FFT-03</h1>
+<h1>&nbsp;</h1>
+    <p class="Large-Bold-Red">・ガウス関数近似の検討</p>
+    <p>FFTのスペクトルをガウス関数近似して，ピーク値を推定したらもっと精度が上がるのでは？という期待から検討してみます．</p>
+    <p>これは，あくまで思考実験であり，理論的根拠があるわけではないことに注意です．</p>
+    <p>&nbsp;</p>
+    <p class="Large-Bold-Red">・窓関数無し</p>
+    <p><img src="FFT-113.png" width="678" height="676" alt=""/></p>
+    <p>そもそも，スペクトルがガウス関数でないので，無理やり，という感じですね．</p>
+    <p>生ピーク値とガウス近似のピーク値の比較が下の図になりますが，ほとんど効果がないことがわかります．</p>
+    <p>&nbsp;</p>
+    <p class="Large-Bold-Red">・窓関数アリ</p>
+    <p><img src="FFT-114.png" width="680" height="669" alt=""/></p>
+    <p>これは結構いい感じで，うまくガウス関数で近似でき，近似ピークも，1～1.03，あたりで落ち着いています．</p>
+    <p>ちょっと大きめに出るのが気になりますが．．．．</p>
+<p>ただこれは，df，に依存しそうですね．．．dfを細かくすれば効果がなくなるのかもしれない．．．．</p>
+    <p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<p><span class="style10"><a href="FFT-102.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span></p>
+
+</body>
+
+</html>
+

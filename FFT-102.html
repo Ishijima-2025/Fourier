@@ -1,0 +1,58 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>FFT</title>
+
+<script type="text/javascript"
+
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1 class="X-Large-Bold-Blue">フーリエ変換，FFT-02</h1>
+<h1>&nbsp;</h1>
+    <p class="Large-Bold-Red">・窓関数の効果</p>
+    <p>次に，窓関数の効果について検証していきます．今回はハニング窓を使います．</p>
+    <p>プログラムは，</p>
+    <p><img src="FFT-110.png" width="795" height="258" alt=""/></p>
+<p>と，赤線枠の部分をいじりました．</p>
+<p>前ページと同じ条件で，35Hz，の正弦波の場合をハニング関数有り無し，で確認しました．</p>
+<p><img src="FFT-111.png" width="709" height="359" alt=""/> </p>
+<p>図のように，明らかに窓関数なしの場合スペクトルが広がって，ピークの値が低くなっていることがわかります．</p>
+<p>&nbsp;</p>
+<p>周波数をスキャンしてみると一目瞭然です．</p>
+<p>25～35 Hz，で0.1 Hz刻みで周波数をスキャンし見ると，ピーク値の値は，</p>
+<p><img src="FFT-112.png" width="741" height="396" alt=""/></p>
+<p>このように，</p>
+<p>　<span class="Blue-Bold">窓関数なし　：　0.65 ～ 1</span></p>
+<p>　<span class="Red-Bold">窓関数あり　：　0.85 ～ 1</span></p>
+<p>と大きな違いがあります，窓関数の重要性を再認識しました．</p>
+<p>&nbsp;</p>
+<p>そうは言っても，窓関数アリでも10％強の変動がありますね．．．．．もう少し精度を上げられないだろうか？</p>
+<p>ということで次ページは，ガウス関数近似での推定を検討します．</p>
+<p>&nbsp;</p>
+
+<p><span class="style10"><a href="FFT-101.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="FFT-103.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+
+</body>
+
+</html>
+
